@@ -1,0 +1,19 @@
+﻿<header class="app-header">
+  <div class="app-brand">
+    <span class="app-logo" aria-hidden="true">⚙️</span>
+    <div>
+      <h1 class="app-title">TechHub</h1>
+      <p class="app-tagline">Gestión ágil de productos y usuarios</p>
+    </div>
+  </div>
+
+  <nav class="app-nav" aria-label="Navegación principal">
+    <a routerLink="/Login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</a>  
+  </nav>
+</header>
+<main class="app-main">
+  <router-outlet></router-outlet>
+<footer class="app-footer">
+  <span>TechHub © 2026</span>
+  <span class="footer-small">Desarrollado con Angular y .NET</span>
+</footer>

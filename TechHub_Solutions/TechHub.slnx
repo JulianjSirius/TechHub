@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="TechHub.API/TechHub.API.csproj" />
+  <Project Path="TechHub.BLL/TechHub.BLL.csproj" />
+  <Project Path="TechHub.DAL/TechHub.DAL.csproj" />
+</Solution>
