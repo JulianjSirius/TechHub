@@ -1,0 +1,40 @@
+<div class="mantenimiento-container">
+  <h1>Agendar Servicio de Mantenimiento</h1>
+
+  <div *ngIf="error()" class="alert error">{{ error() }}</div>
+  <div *ngIf="success()" class="alert success">{{ success() }}</div>
+
+  <form (ngSubmit)="agendar()" class="mantenimiento-form">
+    <div class="field">
+      <label for="productoId">ID del producto</label>
+      <input
+        id="productoId"
+        type="number"
+        [(ngModel)]="productoId"
+        name="productoId"
+        required
+        min="1"
+      />
+    </div>
+
+    <div class="field">
+      <label for="fecha">Fecha</label>
+      <input id="fecha" type="datetime-local" [(ngModel)]="fecha" name="fecha" required />
+    </div>
+
+    <div class="field">
+      <label for="notas">Notas</label>
+      <textarea
+        id="notas"
+        rows="4"
+        [(ngModel)]="notas"
+        name="notas"
+        placeholder="Describe el problema"
+      ></textarea>
+    </div>
+
+    <button type="submit" [disabled]="loading()">
+      {{ loading() ? 'Guardando...' : 'Agendar mantenimiento' }}
+    </button>
+  </form>
+</div>

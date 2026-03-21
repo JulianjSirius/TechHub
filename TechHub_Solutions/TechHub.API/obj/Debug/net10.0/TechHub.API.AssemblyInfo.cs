@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TechHub.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+975aa69bd788da5f4612922b0857c5f39f57de54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d524c45c6bb6d8ac2769f509c0b0b8372df39eea")]
 [assembly: System.Reflection.AssemblyProductAttribute("TechHub.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TechHub.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

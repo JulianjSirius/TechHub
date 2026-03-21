@@ -1,0 +1,65 @@
+.mantenimiento-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.mantenimiento-container h1 {
+  margin-bottom: 1.5rem;
+  color: #222;
+  text-align: center;
+}
+
+.alert {
+  margin-bottom: 1rem;
+  padding: 0.9rem;
+  border-radius: 8px;
+}
+
+.alert.error {
+  background: #fbe2e2;
+  color: #923736;
+}
+
+.alert.success {
+  background: #d7f7e7;
+  color: #2a6a42;
+}
+
+.mantenimiento-form .field {
+  margin-bottom: 1rem;
+}
+
+.mantenimiento-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.mantenimiento-form input,
+.mantenimiento-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  outline: none;
+}
+
+.mantenimiento-form button {
+  width: 100%;
+  background: #ff9900;
+  color: white;
+  border: 0;
+  padding: 0.85rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.mantenimiento-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

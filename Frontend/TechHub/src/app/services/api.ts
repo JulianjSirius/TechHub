@@ -7,16 +7,14 @@ import { RegistroUsuario } from '../models/registrousuario';
 import { Usuario } from '../models/usuario';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
   private http = inject(HttpClient);
-  
 
-  private apiUrl = 'http://localhost:5297/api'; 
+  private apiUrl = 'http://localhost:5297/api';
 
-  constructor() { }
-
+  constructor() {}
 
   registerUser(usuario: RegistroUsuario): Observable<Usuario> {
     return this.http.post<Usuario>(`${this.apiUrl}/usuarios/registro`, usuario);
@@ -25,18 +23,20 @@ export class ApiService {
   login(credenciales: Login): Observable<Usuario> {
     return this.http.post<Usuario>(`${this.apiUrl}/usuarios/login`, credenciales);
   }
-  
+
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.apiUrl}/usuarios`);
   }
 
-
   getProductos(): Observable<Producto[]> {
     return this.http.get<Producto[]>(`${this.apiUrl}/productos`);
   }
- 
-  agendarClase(datosReserva: { usuarioId: number, claseId: number }) {
-    return this.http.post<{mensaje: string}>(`${this.apiUrl}/Clases/agendar`, datosReserva);
+
+  getClases() {
+    return this.http.get<any[]>(`${this.apiUrl}/clases`);
   }
-  
+
+  agendarClase(datosReserva: { usuarioId: number; claseId: number }) {
+    return this.http.post<{ mensaje: string }>(`${this.apiUrl}/Clases/agendar`, datosReserva);
+  }
 }
