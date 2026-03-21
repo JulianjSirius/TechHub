@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TechHub.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+66c79ba0fe11c312b286c9fa04f5b5f888498af1")]
 [assembly: System.Reflection.AssemblyProductAttribute("TechHub.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TechHub.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

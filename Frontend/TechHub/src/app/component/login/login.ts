@@ -17,7 +17,10 @@ export class Login {
   contrasena: string = '';
   mensajeError: string = '';
 
-  constructor(private Service: ApiService, private router: Router) {}
+  constructor(
+    private Service: ApiService,
+    private router: Router,
+  ) {}
 
   iniciarSesion() {
     this.mensajeError = '';
@@ -29,20 +32,20 @@ export class Login {
 
     const credenciales: LoginModel = {
       correo: this.correo,
-      contrasena: this.contrasena
+      contrasena: this.contrasena,
     };
 
     this.Service.login(credenciales).subscribe({
       next: (usuario) => {
         console.log('Login exitoso:', usuario);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/Dashboard']);
         this.correo = '';
         this.contrasena = '';
       },
       error: (err) => {
         console.error('Error en login:', err);
         this.mensajeError = 'Correo o contraseña incorrectos. Intenta de nuevo.';
-      }
+      },
     });
   }
 }

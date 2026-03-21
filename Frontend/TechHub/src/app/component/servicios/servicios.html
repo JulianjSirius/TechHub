@@ -1,0 +1,13 @@
+<div class="servicios-container">
+  <h1>Nuestros Servicios</h1>
+  <p class="subtitulo">Descubre todas las soluciones que TechHub tiene para ti</p>
+
+  <div class="servicios-grid">
+    <div class="servicio-card" *ngFor="let servicio of servicios">
+      <div class="numero-circulo">{{ servicio.numero }}</div>
+      <span class="icono-grande">{{ servicio.icono }}</span>
+      <h2>{{ servicio.titulo }}</h2>
+      <p>{{ servicio.descripcion }}</p>
+    </div>
+  </div>
+</div>

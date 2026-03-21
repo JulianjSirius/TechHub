@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
 })
@@ -30,7 +31,7 @@ export class Dashboard {
       error: (err) => {
         this.status = `Error de conexión: ${err?.message ?? err?.statusText ?? err?.status ?? 'desconocido'}`;
         this.loading = false;
-      }
+      },
     });
   }
 }

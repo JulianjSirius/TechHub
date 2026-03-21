@@ -1,0 +1,50 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>Bienvenido a TechHub</h1>
+    <p>Accede a todas nuestras opciones y servicios</p>
+  </div>
+
+  <div class="dashboard-grid">
+    <!-- Agendar Clases -->
+    <div class="dashboard-card">
+      <div class="card-icon">📅</div>
+      <h2>Agendar Clases</h2>
+      <p>Reserva una sesión de entrenamiento con nuestros expertos</p>
+      <a routerLink="/Clases" class="btn-card">Ir a Clases</a>
+    </div>
+
+    <!-- Las Clases que hay -->
+    <div class="dashboard-card">
+      <div class="card-icon">📚</div>
+      <h2>Clases Disponibles</h2>
+      <p>Consulta el catálogo completo de nuestras clases</p>
+      <a routerLink="/Clases" class="btn-card">Ver Clases</a>
+    </div>
+
+    <!-- Productos -->
+    <div class="dashboard-card">
+      <div class="card-icon">🖥️</div>
+      <h2>Nuestros Productos</h2>
+      <p>Explora nuestro catálogo de hardware y software</p>
+      <a routerLink="/Productos" class="btn-card">Ver Productos</a>
+    </div>
+
+    <!-- Servicios -->
+    <div class="dashboard-card">
+      <div class="card-icon">🛠️</div>
+      <h2>Nuestros Servicios</h2>
+      <p>Conoce todos los servicios que ofrecemos para ti</p>
+      <a routerLink="/Servicios" class="btn-card">Ver Servicios</a>
+    </div>
+  </div>
+
+  <!-- Sección de prueba de conexión (opcional) -->
+  <div class="connection-test">
+    <button (click)="probarConexion()" [disabled]="loading">
+      {{ loading ? 'Probando...' : 'Probar Conexión' }}
+    </button>
+    <div *ngIf="status" [class]="status.includes('Error') ? 'error-message' : 'success-message'">
+      {{ status }}
+    </div>
+  </div>
+</div>

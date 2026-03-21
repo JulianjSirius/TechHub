@@ -50,7 +50,7 @@ export class Register {
 
     this.api.registerUser(registro).subscribe({
       next: (usuario) => {
-        this.mensaje = `Usuario registrado correctamente. ¡Hola ${usuario.nombre}!`;
+        this.mensaje = `Usuario registrado correctamente. ${usuario.nombre}!`;
         this.loading = false;
         setTimeout(() => {
           this.router.navigate(['/Login']);

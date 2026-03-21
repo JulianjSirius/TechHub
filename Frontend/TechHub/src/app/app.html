@@ -8,11 +8,16 @@
   </div>
 
   <nav class="app-nav" aria-label="Navegación principal">
-    <a routerLink="/Login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</a>  
+    <a routerLink="/guia-usuario" routerLinkActive="active">¿Cómo funciona?</a>
+    <a routerLink="/servicios" routerLinkActive="active">Servicios</a>
+    <a routerLink="/Login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      >Login</a
+    >
   </nav>
 </header>
 <main class="app-main">
   <router-outlet></router-outlet>
+</main>
 <footer class="app-footer">
   <span>TechHub © 2026</span>
   <span class="footer-small">Desarrollado con Angular y .NET</span>
