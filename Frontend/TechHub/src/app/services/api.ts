@@ -34,4 +34,9 @@ export class ApiService {
   getProductos(): Observable<Producto[]> {
     return this.http.get<Producto[]>(`${this.apiUrl}/productos`);
   }
+ 
+  agendarClase(datosReserva: { usuarioId: number, claseId: number }) {
+    return this.http.post<{mensaje: string}>(`${this.apiUrl}/Clases/agendar`, datosReserva);
+  }
+  
 }

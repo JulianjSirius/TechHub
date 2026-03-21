@@ -24,6 +24,7 @@ builder.Services.AddScoped<IAgendaService, AgendaService>();
 builder.Services.AddScoped<IVentasService, VentasService>();
 builder.Services.AddScoped<IUsuariosService, UsuariosService>();
 
+
 var app = builder.Build();
 
 

@@ -59,7 +59,7 @@ export class Register {
       error: (err) => {
         this.error = err?.error ?? 'No se pudo registrar. Intenta de nuevo.';
         this.loading = false;
-      }
+      },
     });
   }
 }

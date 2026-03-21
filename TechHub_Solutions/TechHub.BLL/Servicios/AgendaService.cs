@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TechHub.BLL.Interfaces;
 using TechHub.DAL;
@@ -21,9 +19,33 @@ namespace TechHub.BLL.Servicios
             return await _context.Clases.ToListAsync();
         }
 
-        public async Task<Clase?> ObtenerClasePorIdAsync(int id)
+        public async Task<bool> ReservarClaseAsync(int usuarioId, int claseId)
         {
-            return await _context.Clases.FindAsync(id);
+            // Busca la clase en la DB
+            var clase = await _context.Clases.FindAsync(claseId);
+            
+            // Validación: ¿Existe la clase y tiene cupos?
+            if (clase == null || clase.CuposDisponibles <= 0)
+            {
+                return false; 
+            }
+
+            // Crear la entidad de reserva
+            var nuevaReserva = new Reserva
+            {
+                UsuarioId = usuarioId,
+                ClaseId = claseId,
+                FechaReserva = DateTime.UtcNow
+            };
+
+            //  Restar un cupo disponible
+            clase.CuposDisponibles -= 1;
+
+            // Guardamos todo en una sola transacción
+            _context.Reservas.Add(nuevaReserva);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

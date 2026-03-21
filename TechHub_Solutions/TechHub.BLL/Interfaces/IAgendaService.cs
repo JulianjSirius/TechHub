@@ -9,6 +9,6 @@ namespace TechHub.BLL.Interfaces
         Task<IEnumerable<Clase>> ObtenerClasesAsync();
 
      
-        Task<Clase?> ObtenerClasePorIdAsync(int id);
+        Task<bool> ReservarClaseAsync(int usuarioId, int claseId);
     }
 }
