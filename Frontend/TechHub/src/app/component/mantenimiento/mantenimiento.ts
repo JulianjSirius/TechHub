@@ -66,6 +66,10 @@ export class Mantenimiento {
     return this.mantenimientos().length > 0;
   }
 
+  get totalMantenimientos() {
+    return this.mantenimientos().length;
+  }
+
   ngOnInit() {
     this.cargarProductos();
     this.cargarMantenimientosGuardados();
@@ -162,9 +166,34 @@ export class Mantenimiento {
     });
   }
 
-
   obtenerNombreProducto(productoId: number) {
     const producto = this.productos().find((p) => p.id === productoId);
     return producto?.nombre ?? 'Producto no cargado';
+  }
+
+  finalizarMantenimiento(id: number) {
+    const lista = [...this.mantenimientos()];
+    const idx = lista.findIndex((m) => m.id === id);
+    if (idx === -1) {
+      this.error.set('Mantenimiento no encontrado.');
+      return;
+    }
+
+    if (lista[idx].estado === 'Finalizado') {
+      this.error.set('El mantenimiento ya se encuentra finalizado.');
+      return;
+    }
+
+    lista[idx].estado = 'Finalizado';
+    this.mantenimientos.set(lista);
+    localStorage.setItem('misMantenimientos', JSON.stringify(lista));
+    this.success.set('Mantenimiento marcado como finalizado.');
+  }
+
+  cancelarMantenimiento(id: number) {
+    const lista = this.mantenimientos().filter((item) => item.id !== id);
+    this.mantenimientos.set(lista);
+    localStorage.setItem('misMantenimientos', JSON.stringify(lista));
+    this.success.set('Mantenimiento cancelado.');
   }
 }

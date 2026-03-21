@@ -5,6 +5,7 @@ import { Producto } from '../models/producto';
 import { Login } from '../models/login';
 import { RegistroUsuario } from '../models/registrousuario';
 import { Usuario } from '../models/usuario';
+import { Clase } from '../models/clases'; // ✅ Agregada la importación
 
 @Injectable({
   providedIn: 'root',
@@ -32,11 +33,17 @@ export class ApiService {
     return this.http.get<Producto[]>(`${this.apiUrl}/productos`);
   }
 
-  getClases() {
-    return this.http.get<any[]>(`${this.apiUrl}/clases`);
+
+  getClases(): Observable<Clase[]> {
+    return this.http.get<Clase[]>(`${this.apiUrl}/clases`);
   }
 
   agendarClase(datosReserva: { usuarioId: number; claseId: number }) {
-    return this.http.post<{ mensaje: string }>(`${this.apiUrl}/Clases/agendar`, datosReserva);
+    return this.http.post<{ mensaje: string }>(`${this.apiUrl}/clases/agendar`, datosReserva);
+  }
+
+ 
+  crearMantenimiento(datosMantenimiento: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/mantenimientos`, datosMantenimiento);
   }
 }

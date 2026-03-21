@@ -32,19 +32,7 @@
     <!-- Servicios -->
     <div class="dashboard-card">
       <div class="card-icon">🛠️</div>
-      <h2>Nuestros Servicios</h2>
-      <p>Conoce todos los servicios que ofrecemos para ti</p>
-      <a routerLink="/Servicios" class="btn-card">Ver Servicios</a>
+      <h2>Servicios de Mantenimiento</h2>
+      <p>Agenda un servicio de mantenimiento para tus dispositivos</p>
+      <a routerLink="/Mantenimiento" class="btn-card">Agendar Mantenimiento</a>
     </div>
-  </div>
-
-  <!-- Sección de prueba de conexión (opcional) -->
-  <div class="connection-test">
-    <button (click)="probarConexion()" [disabled]="loading">
-      {{ loading ? 'Probando...' : 'Probar Conexión' }}
-    </button>
-    <div *ngIf="status" [class]="status.includes('Error') ? 'error-message' : 'success-message'">
-      {{ status }}
-    </div>
-  </div>
-</div>

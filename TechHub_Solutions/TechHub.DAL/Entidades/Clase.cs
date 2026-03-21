@@ -17,9 +17,6 @@ namespace TechHub.DAL.Entidades
         [Column("CuposMaximos")]
         public int CuposMaximos { get; set; }
 
-        [Column("Duracion")]
-        public DateTime? TipoDate { get; set; }
-
         [Column("CuposDisponibles")]
         public int CuposDisponibles { get; set; }
     }

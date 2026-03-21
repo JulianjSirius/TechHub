@@ -4,17 +4,30 @@
   <div *ngIf="error()" class="alert error">{{ error() }}</div>
   <div *ngIf="success()" class="alert success">{{ success() }}</div>
 
+  <section class="servicios-disponibles">
+    <h2>Servicios disponibles</h2>
+    <div class="tarjetas-servicio">
+      <div
+        *ngFor="let servicio of servicios"
+        class="servicio-card"
+        [class.active]="servicio.id === servicioId()"
+        (click)="servicioId.set(servicio.id)"
+      >
+        <h3>{{ servicio.titulo }}</h3>
+        <p>{{ servicio.descripcion }}</p>
+      </div>
+    </div>
+  </section>
+
   <form (ngSubmit)="agendar()" class="mantenimiento-form">
     <div class="field">
-      <label for="productoId">ID del producto</label>
-      <input
-        id="productoId"
-        type="number"
-        [(ngModel)]="productoId"
-        name="productoId"
-        required
-        min="1"
-      />
+      <label for="productoId">Producto</label>
+      <select id="productoId" [(ngModel)]="productoId" name="productoId" required>
+        <option [ngValue]="0">-- Selecciona un producto --</option>
+        <option *ngFor="let producto of productos()" [ngValue]="producto.id">
+          {{ producto.nombre }} ({{ producto.marca || 'Sin marca' }})
+        </option>
+      </select>
     </div>
 
     <div class="field">
@@ -37,4 +50,39 @@
       {{ loading() ? 'Guardando...' : 'Agendar mantenimiento' }}
     </button>
   </form>
+
+  <section class="historial-mantenimiento" *ngIf="tieneMantenimientos">
+    <h2>Historial de mantenimientos ({{ totalMantenimientos }})</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Servicio</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of mantenimientos()">
+          <td>{{ obtenerNombreProducto(item.productoId) }}</td>
+          <td>{{ servicios.find((s) => s.id === item.servicioId)?.titulo }}</td>
+          <td>{{ item.fecha }}</td>
+          <td>{{ item.estado }}</td>
+          <td>
+            <button
+              *ngIf="item.estado !== 'Finalizado'"
+              (click)="finalizarMantenimiento(item.id)"
+              class="btn-accion"
+            >
+              Finalizar
+            </button>
+            <button (click)="cancelarMantenimiento(item.id)" class="btn-accion cancel">
+              Cancelar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 </div>
