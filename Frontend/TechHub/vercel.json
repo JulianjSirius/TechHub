@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/Frontend/TechHub/dist/TechHub/browser/index.html"
     }
   ]
 }
