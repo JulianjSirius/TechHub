@@ -1,0 +1,262 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\proyecto herramientas 3\\TechHub_Solutions\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8572F2C0-2736-A7EA-B674-7164D533766D}|TechHub.DAL\\TechHub.DAL.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.dal\\entidades\\mantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8572F2C0-2736-A7EA-B674-7164D533766D}|TechHub.DAL\\TechHub.DAL.csproj|solutionrelative:techhub.dal\\entidades\\mantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8572F2C0-2736-A7EA-B674-7164D533766D}|TechHub.DAL\\TechHub.DAL.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.dal\\entidades\\clase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8572F2C0-2736-A7EA-B674-7164D533766D}|TechHub.DAL\\TechHub.DAL.csproj|solutionrelative:techhub.dal\\entidades\\clase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8572F2C0-2736-A7EA-B674-7164D533766D}|TechHub.DAL\\TechHub.DAL.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.dal\\entidades\\reserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8572F2C0-2736-A7EA-B674-7164D533766D}|TechHub.DAL\\TechHub.DAL.csproj|solutionrelative:techhub.dal\\entidades\\reserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.api\\datetransfer\\mantenimientodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|solutionrelative:techhub.api\\datetransfer\\mantenimientodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.api\\controladores\\mantenimientoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|solutionrelative:techhub.api\\controladores\\mantenimientoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.api\\controladores\\clasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|solutionrelative:techhub.api\\controladores\\clasescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.api\\controladores\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|solutionrelative:techhub.api\\controladores\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.api\\datetransfer\\clasedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|solutionrelative:techhub.api\\datetransfer\\clasedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.api\\datetransfer\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|solutionrelative:techhub.api\\datetransfer\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.api\\datetransfer\\registrodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|solutionrelative:techhub.api\\datetransfer\\registrodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.api\\datetransfer\\reservadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|solutionrelative:techhub.api\\datetransfer\\reservadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B5E707A-9B14-B70D-522C-487303330537}|TechHub.API\\TechHub.API.csproj|solutionrelative:techhub.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52F9E71E-18CC-5774-E5F7-BE5257CD02EA}|TechHub.BLL\\TechHub.BLL.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.bll\\interfaces\\iagendaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52F9E71E-18CC-5774-E5F7-BE5257CD02EA}|TechHub.BLL\\TechHub.BLL.csproj|solutionrelative:techhub.bll\\interfaces\\iagendaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52F9E71E-18CC-5774-E5F7-BE5257CD02EA}|TechHub.BLL\\TechHub.BLL.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.bll\\servicios\\agendaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52F9E71E-18CC-5774-E5F7-BE5257CD02EA}|TechHub.BLL\\TechHub.BLL.csproj|solutionrelative:techhub.bll\\servicios\\agendaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8572F2C0-2736-A7EA-B674-7164D533766D}|TechHub.DAL\\TechHub.DAL.csproj|c:\\proyecto herramientas 3\\techhub_solutions\\techhub.dal\\techhubdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8572F2C0-2736-A7EA-B674-7164D533766D}|TechHub.DAL\\TechHub.DAL.csproj|solutionrelative:techhub.dal\\techhubdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\Program.cs",
+              "RelativeDocumentMoniker": "TechHub.API\\Program.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\Program.cs",
+              "RelativeToolTip": "TechHub.API\\Program.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAowBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T17:27:42.491Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClasesController.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\controladores\\ClasesController.cs",
+              "RelativeDocumentMoniker": "TechHub.API\\controladores\\ClasesController.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\controladores\\ClasesController.cs",
+              "RelativeToolTip": "TechHub.API\\controladores\\ClasesController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowDoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T00:13:10.929Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MantenimientosController.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\controladores\\MantenimientosController.cs",
+              "RelativeDocumentMoniker": "TechHub.API\\controladores\\MantenimientosController.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\controladores\\MantenimientosController.cs",
+              "RelativeToolTip": "TechHub.API\\controladores\\MantenimientosController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T01:52:53.066Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Reserva.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.DAL\\Entidades\\Reserva.cs",
+              "RelativeDocumentMoniker": "TechHub.DAL\\Entidades\\Reserva.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.DAL\\Entidades\\Reserva.cs",
+              "RelativeToolTip": "TechHub.DAL\\Entidades\\Reserva.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T00:25:49.21Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Clase.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.DAL\\Entidades\\Clase.cs",
+              "RelativeDocumentMoniker": "TechHub.DAL\\Entidades\\Clase.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.DAL\\Entidades\\Clase.cs",
+              "RelativeToolTip": "TechHub.DAL\\Entidades\\Clase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T00:25:52.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Mantenimiento.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.DAL\\Entidades\\Mantenimiento.cs",
+              "RelativeDocumentMoniker": "TechHub.DAL\\Entidades\\Mantenimiento.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.DAL\\Entidades\\Mantenimiento.cs",
+              "RelativeToolTip": "TechHub.DAL\\Entidades\\Mantenimiento.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T01:48:47.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\controladores\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "TechHub.API\\controladores\\UsuariosController.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\controladores\\UsuariosController.cs",
+              "RelativeToolTip": "TechHub.API\\controladores\\UsuariosController.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAcwDMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-12T01:59:33.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MantenimientoDTO.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\DateTransfer\\MantenimientoDTO.cs",
+              "RelativeDocumentMoniker": "TechHub.API\\DateTransfer\\MantenimientoDTO.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\DateTransfer\\MantenimientoDTO.cs",
+              "RelativeToolTip": "TechHub.API\\DateTransfer\\MantenimientoDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T01:52:05.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ClaseDTO.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\DateTransfer\\ClaseDTO.cs",
+              "RelativeDocumentMoniker": "TechHub.API\\DateTransfer\\ClaseDTO.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\DateTransfer\\ClaseDTO.cs",
+              "RelativeToolTip": "TechHub.API\\DateTransfer\\ClaseDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T01:10:57.386Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoginDTO.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\DateTransfer\\LoginDTO.cs",
+              "RelativeDocumentMoniker": "TechHub.API\\DateTransfer\\LoginDTO.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\DateTransfer\\LoginDTO.cs",
+              "RelativeToolTip": "TechHub.API\\DateTransfer\\LoginDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T22:04:41.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RegistroDTO.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\DateTransfer\\RegistroDTO.cs",
+              "RelativeDocumentMoniker": "TechHub.API\\DateTransfer\\RegistroDTO.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\DateTransfer\\RegistroDTO.cs",
+              "RelativeToolTip": "TechHub.API\\DateTransfer\\RegistroDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T22:36:01.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ReservaDTO.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\DateTransfer\\ReservaDTO.cs",
+              "RelativeDocumentMoniker": "TechHub.API\\DateTransfer\\ReservaDTO.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.API\\DateTransfer\\ReservaDTO.cs",
+              "RelativeToolTip": "TechHub.API\\DateTransfer\\ReservaDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T01:11:14.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IAgendaService.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.BLL\\Interfaces\\IAgendaService.cs",
+              "RelativeDocumentMoniker": "TechHub.BLL\\Interfaces\\IAgendaService.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.BLL\\Interfaces\\IAgendaService.cs",
+              "RelativeToolTip": "TechHub.BLL\\Interfaces\\IAgendaService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T00:12:58.325Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AgendaService.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.BLL\\Servicios\\AgendaService.cs",
+              "RelativeDocumentMoniker": "TechHub.BLL\\Servicios\\AgendaService.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.BLL\\Servicios\\AgendaService.cs",
+              "RelativeToolTip": "TechHub.BLL\\Servicios\\AgendaService.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAwwA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T00:42:11.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TechHubDbContext.cs",
+              "DocumentMoniker": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.DAL\\TechHubDbContext.cs",
+              "RelativeDocumentMoniker": "TechHub.DAL\\TechHubDbContext.cs",
+              "ToolTip": "C:\\proyecto herramientas 3\\TechHub_Solutions\\TechHub.DAL\\TechHubDbContext.cs",
+              "RelativeToolTip": "TechHub.DAL\\TechHubDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T00:45:22.595Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

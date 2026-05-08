@@ -1,0 +1,80 @@
+<div class="auth-shell">
+  <section class="auth-panel">
+    <span class="pill">Nuevo en TechHub</span>
+    <h1>Crea tu cuenta en minutos</h1>
+    <p>Centraliza tus compras, clases y soporte con una experiencia premium.</p>
+    <ul class="auth-list">
+      <li>Acceso inmediato al catálogo y ofertas</li>
+      <li>Panel de reservas y seguimiento</li>
+      <li>Soporte proactivo en un solo lugar</li>
+    </ul>
+  </section>
+
+  <section class="auth-card">
+    <div class="auth-card-header">
+      <h2>Registro</h2>
+      <p>Completa tus datos para crear tu cuenta.</p>
+    </div>
+
+    <form class="register-form" (ngSubmit)="registrar()" #form="ngForm">
+      <div class="field">
+        <label for="nombre">Nombre</label>
+        <input
+          id="nombre"
+          name="nombre"
+          type="text"
+          [(ngModel)]="nombre"
+          required
+          placeholder="Tu nombre"
+        />
+      </div>
+
+      <div class="field">
+        <label for="correo">Correo</label>
+        <input
+          id="correo"
+          name="correo"
+          type="email"
+          [(ngModel)]="correo"
+          required
+          placeholder="correo@ejemplo.com"
+        />
+      </div>
+
+      <div class="field">
+        <label for="contrasena">Contraseña</label>
+        <input
+          id="contrasena"
+          name="contrasena"
+          type="password"
+          [(ngModel)]="contrasena"
+          required
+          placeholder="********"
+        />
+      </div>
+
+      <div class="field">
+        <label for="confirmContrasena">Confirmar contraseña</label>
+        <input
+          id="confirmContrasena"
+          name="confirmContrasena"
+          type="password"
+          [(ngModel)]="confirmContrasena"
+          required
+          placeholder="********"
+        />
+      </div>
+
+      <div *ngIf="error" class="error-message">{{ error }}</div>
+      <div *ngIf="mensaje" class="success-message">{{ mensaje }}</div>
+
+      <button class="btn btn-primary submit" type="submit" [disabled]="form.invalid || loading">
+        {{ loading ? 'Registrando...' : 'Registrarme' }}
+      </button>
+
+      <div class="secondary">
+        <a routerLink="/Login">Volver al login</a>
+      </div>
+    </form>
+  </section>
+</div>

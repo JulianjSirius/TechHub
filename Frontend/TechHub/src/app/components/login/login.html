@@ -1,0 +1,59 @@
+﻿<div class="auth-shell">
+  <section class="auth-panel">
+    <span class="pill">Acceso seguro</span>
+    <h1>Gestiona TechHub en segundos</h1>
+    <p>Administra productos, clases y soporte con una vista unificada.</p>
+    <ul class="auth-list">
+      <li>Catálogo actualizado y compras rápidas</li>
+      <li>Reservas de clases con recordatorios</li>
+      <li>Tickets de soporte centralizados</li>
+    </ul>
+  </section>
+
+  <section class="auth-card">
+    <div class="auth-card-header">
+      <h2>Iniciar sesión</h2>
+      <p>Ingresa con tu correo y contraseña.</p>
+    </div>
+
+    <form class="login-form" (ngSubmit)="iniciarSesion()" #loginForm="ngForm">
+      <div class="field">
+        <label for="correo">Correo</label>
+        <input
+          id="correo"
+          name="correo"
+          type="email"
+          [(ngModel)]="correo"
+          required
+          placeholder="correo@ejemplo.com"
+        />
+      </div>
+
+      <div class="field">
+        <label for="contrasena">Contraseña</label>
+        <input
+          id="contrasena"
+          name="contrasena"
+          type="password"
+          [(ngModel)]="contrasena"
+          required
+          placeholder="********"
+        />
+      </div>
+
+      <div *ngIf="mensajeError" class="error-message">
+        {{ mensajeError }}
+      </div>
+
+      <button class="btn btn-primary submit" type="submit" [disabled]="loginForm.invalid">
+        Entrar
+      </button>
+
+      <div class="login-links">
+        <a routerLink="/Registro" class="link">Registrarme</a>
+        <span class="link-separator">|</span>
+        <a routerLink="/RecuperarContrasena" class="link">Olvidé mi contraseña</a>
+      </div>
+    </form>
+  </section>
+</div>

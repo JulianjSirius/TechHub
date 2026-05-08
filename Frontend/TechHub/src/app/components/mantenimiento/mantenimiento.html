@@ -1,0 +1,140 @@
+<div class="page-wrapper">
+  <div class="page-header">
+    <span class="pill">Soporte</span>
+    <h1>Laboratorio Técnico TechHub</h1>
+    <p>Soporte especializado para el hardware y software de tu empresa.</p>
+  </div>
+
+  <div *ngIf="error()" class="toast-alert toast-error">
+    <span class="icon">⚠️</span> {{ error() }}
+  </div>
+  <div *ngIf="success()" class="toast-alert toast-success">
+    <span class="icon">✅</span> {{ success() }}
+  </div>
+
+  <div class="content-grid">
+    <div class="main-column">
+      <section class="card-section">
+        <div class="section-header">
+          <h2>1. Elige el Servicio Requerido</h2>
+        </div>
+        <div class="services-grid">
+          <div
+            *ngFor="let servicio of servicios"
+            class="service-card"
+            [class.active]="servicio.id === servicioId()"
+            (click)="servicioId.set(servicio.id)"
+          >
+            <div class="service-icon">
+              {{
+                servicio.id === 1
+                  ? '🛡️'
+                  : servicio.id === 2
+                    ? '🔄'
+                    : servicio.id === 3
+                      ? '🩺'
+                      : '📡'
+              }}
+            </div>
+            <h3>{{ servicio.titulo }}</h3>
+            <p>{{ servicio.descripcion }}</p>
+            <div class="active-indicator"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card-section form-section">
+        <div class="section-header">
+          <h2>2. Detalles del Equipo</h2>
+        </div>
+        <form (ngSubmit)="agendar()" class="modern-form">
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="productoId">Dispositivo / Producto</label>
+              <div class="input-wrapper">
+                <select
+                  id="productoId"
+                  [ngModel]="productoId()"
+                  (ngModelChange)="productoId.set($event)"
+                  name="productoId"
+                  required
+                >
+                  <option [ngValue]="0" disabled>-- Selecciona un producto --</option>
+                  <option *ngFor="let producto of productos()" [ngValue]="producto.id">
+                    {{ producto.nombre }} ({{ producto.marca || 'Genérico' }})
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group flex-1">
+              <label for="fecha">Fecha Programada</label>
+              <div class="input-wrapper">
+                <input
+                  id="fecha"
+                  type="datetime-local"
+                  [ngModel]="fecha()"
+                  (ngModelChange)="fecha.set($event)"
+                  name="fecha"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="notas">Síntomas o descripción del problema</label>
+            <div class="input-wrapper">
+              <textarea
+                id="notas"
+                rows="4"
+                [ngModel]="notas()"
+                (ngModelChange)="notas.set($event)"
+                name="notas"
+                placeholder="Ej. El equipo se reinicia solo al abrir programas pesados..."
+              ></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" [disabled]="loading()">
+            {{ loading() ? 'Registrando ticket...' : 'Agendar Servicio Técnico' }}
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <div class="side-column" *ngIf="tieneMantenimientos">
+      <section class="card-section history-section">
+        <div class="section-header">
+          <h2>Tickets de Soporte</h2>
+          <span class="count-badge">{{ totalMantenimientos }}</span>
+        </div>
+
+        <div class="history-list">
+          <div class="ticket-card" *ngFor="let item of mantenimientos()">
+            <div class="ticket-header">
+              <span class="status-badge" [ngClass]="item.estado.toLowerCase()">{{
+                item.estado
+              }}</span>
+              <small>{{ item.fecha | date: 'short' }}</small>
+            </div>
+
+            <div class="ticket-body">
+              <strong>{{ obtenerNombreProducto(item.productoId) }}</strong>
+              <span>{{ servicios[item.servicioId - 1]?.titulo }}</span>
+            </div>
+
+            <div class="ticket-actions" *ngIf="item.estado !== 'Finalizado'">
+              <button (click)="finalizarMantenimiento(item.id)" class="btn-sm btn-success">
+                Solucionado
+              </button>
+              <button (click)="cancelarMantenimiento(item.id)" class="btn-sm btn-danger">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

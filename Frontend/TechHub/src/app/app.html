@@ -1,24 +1,60 @@
-﻿<header class="app-header">
-  <div class="app-brand">
-    <span class="app-logo" aria-hidden="true">⚙️</span>
-    <div>
-      <h1 class="app-title">TechHub</h1>
-      <p class="app-tagline">Gestión ágil de productos y usuarios</p>
+﻿<div class="app-shell">
+  <header class="app-header">
+    <div class="app-brand">
+      <div class="app-logo" aria-hidden="true">
+        <span class="logo-core"></span>
+      </div>
+      <div class="app-brand-text">
+        <h1 class="app-title">TechHub</h1>
+        <p class="app-tagline">Compras, clases y soporte en una sola plataforma</p>
+      </div>
     </div>
-  </div>
 
-  <nav class="app-nav" aria-label="Navegación principal">
-    <a routerLink="/guia-usuario" routerLinkActive="active">¿Cómo funciona?</a>
-    <a routerLink="/servicios" routerLinkActive="active">Servicios</a>
-    <a routerLink="/Login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-      >Login</a
-    >
-  </nav>
-</header>
-<main class="app-main">
-  <router-outlet></router-outlet>
-</main>
-<footer class="app-footer">
-  <span>TechHub © 2026</span>
-  <span class="footer-small">Desarrollado con Angular y .NET</span>
-</footer>
+    <nav class="app-nav" aria-label="Navegación principal">
+      <a routerLink="/guia-usuario" routerLinkActive="active">Guía de uso</a>
+      <a routerLink="/servicios" routerLinkActive="active">Servicios</a>
+      <a
+        *ngIf="!auth.isLoggedIn()"
+        routerLink="/Login"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Login</a
+      >
+      <div *ngIf="auth.isLoggedIn()" class="user-menu" [class.open]="menuOpen()">
+        <button
+          type="button"
+          class="user-trigger"
+          (click)="toggleMenu()"
+          aria-haspopup="true"
+          [attr.aria-expanded]="menuOpen()"
+        >
+          <span class="avatar">{{ userInitials() }}</span>
+          <span class="user-name">{{ auth.userName() }}</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="menu-panel" *ngIf="menuOpen()">
+          <button type="button" class="menu-item" routerLink="/Dashboard" (click)="closeMenu()">
+            Configuracion
+          </button>
+          <button type="button" class="menu-item" routerLink="/servicios" (click)="closeMenu()">
+            Opciones
+          </button>
+          <button type="button" class="menu-item" routerLink="/Productos" (click)="closeMenu()">
+            Mi carrito
+          </button>
+          <div class="menu-divider"></div>
+          <button type="button" class="menu-item danger" (click)="logout()">Cerrar sesion</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="app-footer">
+    <span>TechHub 2026</span>
+    <span class="footer-small">Plataforma de productos, clases y soporte</span>
+  </footer>
+</div>

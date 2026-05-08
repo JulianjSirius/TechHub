@@ -1,12 +1,13 @@
 import { Routes } from '@angular/router';
-import { Login } from './component/login/login';
-import { Dashboard } from './component/dashboard/dashboard';
-import { Productos } from './component/productos/productos';
-import { Register } from './component/registro/registrousuario';
-import { ForgotPassword } from './component/forgot-password/forgot-password';
-import { Clases } from './component/clases/clases';
-import { Servicios } from './component/servicios/servicios';
-import { GuiaUsuario } from './component/guia-usuario/guia-usuario';
+import { Login } from './components/login/login';
+import { Dashboard } from './components/dashboard/dashboard';
+import { Productos } from './components/productos/productos';
+import { Register } from './components/registro/registrousuario';
+import { ForgotPassword } from './components/forgot-password/forgot-password';
+import { Clases } from './components/clases/clases';
+import { Servicios } from './components/servicios/servicios';
+import { GuiaUsuario } from './components/guia-usuario/guia-usuario';
+import { Mantenimiento } from './components/mantenimiento/mantenimiento';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'Dashboard', component: Dashboard },
   { path: 'Productos', component: Productos },
   { path: 'Clases', component: Clases },
-  {path: 'servicios', component: Servicios},
+  { path: 'servicios', component: Servicios },
+  { path: 'mantenimiento', component: Mantenimiento },
   { path: '**', redirectTo: 'login' },
 ];
