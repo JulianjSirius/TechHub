@@ -23,7 +23,8 @@
           id="correo"
           name="correo"
           type="email"
-          [(ngModel)]="correo"
+          [ngModel]="correo()"
+          (ngModelChange)="correo.set($event)"
           required
           placeholder="correo@ejemplo.com"
         />
@@ -35,18 +36,23 @@
           id="contrasena"
           name="contrasena"
           type="password"
-          [(ngModel)]="contrasena"
+          [ngModel]="contrasena()"
+          (ngModelChange)="contrasena.set($event)"
           required
           placeholder="********"
         />
       </div>
 
-      <div *ngIf="mensajeError" class="error-message">
-        {{ mensajeError }}
-      </div>
+      @if (mensajeError()) {
+        <div class="error-message">{{ mensajeError() }}</div>
+      }
 
-      <button class="btn btn-primary submit" type="submit" [disabled]="loginForm.invalid">
-        Entrar
+      <button
+        class="btn btn-primary submit"
+        type="submit"
+        [disabled]="loginForm.invalid || loading()"
+      >
+        {{ loading() ? 'Entrando...' : 'Entrar' }}
       </button>
 
       <div class="login-links">

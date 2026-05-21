@@ -13,39 +13,79 @@
     <nav class="app-nav" aria-label="Navegación principal">
       <a routerLink="/guia-usuario" routerLinkActive="active">Guía de uso</a>
       <a routerLink="/servicios" routerLinkActive="active">Servicios</a>
-      <a
-        *ngIf="!auth.isLoggedIn()"
-        routerLink="/Login"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        >Login</a
-      >
-      <div *ngIf="auth.isLoggedIn()" class="user-menu" [class.open]="menuOpen()">
-        <button
-          type="button"
-          class="user-trigger"
-          (click)="toggleMenu()"
-          aria-haspopup="true"
-          [attr.aria-expanded]="menuOpen()"
+      @if (!auth.isLoggedIn()) {
+        <a
+          routerLink="/Login"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
-          <span class="avatar">{{ userInitials() }}</span>
-          <span class="user-name">{{ auth.userName() }}</span>
-          <span class="chevron">▾</span>
-        </button>
-        <div class="menu-panel" *ngIf="menuOpen()">
-          <button type="button" class="menu-item" routerLink="/Dashboard" (click)="closeMenu()">
-            Configuracion
+          Login
+        </a>
+      }
+      @if (auth.isLoggedIn()) {
+        <div class="user-menu" [class.open]="menuOpen()">
+          <button
+            type="button"
+            class="user-trigger"
+            (click)="toggleMenu()"
+            aria-haspopup="true"
+            [attr.aria-expanded]="menuOpen()"
+          >
+            <span class="avatar">{{ userInitials() }}</span>
+            <span class="user-name">{{ auth.userName() }}</span>
+            <span class="chevron">▾</span>
           </button>
-          <button type="button" class="menu-item" routerLink="/servicios" (click)="closeMenu()">
-            Opciones
-          </button>
-          <button type="button" class="menu-item" routerLink="/Productos" (click)="closeMenu()">
-            Mi carrito
-          </button>
-          <div class="menu-divider"></div>
-          <button type="button" class="menu-item danger" (click)="logout()">Cerrar sesion</button>
+          @if (menuOpen()) {
+            <div class="menu-panel">
+              <button type="button" class="menu-item" routerLink="/Dashboard" (click)="closeMenu()">
+                Configuracion
+              </button>
+              <button type="button" class="menu-item" routerLink="/opciones" (click)="closeMenu()">
+                Opciones
+              </button>
+              <div class="menu-section">
+                <div class="menu-section-title">Mi carrito</div>
+                @if (cart.cartItems().length === 0) {
+                  <div class="menu-empty">Aun no hay productos en tu carrito.</div>
+                }
+                @for (item of cart.cartItems(); track item.producto.id) {
+                  <div class="menu-cart-item">
+                    <div>
+                      <strong>{{ item.producto.nombre }}</strong>
+                      <small>
+                        {{ item.cantidad }} x {{ item.producto.precio ?? 0 | currency: 'USD' }}
+                      </small>
+                    </div>
+                    <span class="menu-cart-total">{{
+                      (item.producto.precio ?? 0) * item.cantidad | currency: 'USD'
+                    }}</span>
+                  </div>
+                }
+                @if (cart.cartItems().length > 0) {
+                  <div class="menu-cart-summary">Total: {{ cart.total() | currency: 'USD' }}</div>
+                }
+              </div>
+
+              <div class="menu-section">
+                <div class="menu-section-title">Favoritos</div>
+                @if (cart.favorites().length === 0) {
+                  <div class="menu-empty">Guarda productos para futuras compras.</div>
+                }
+                @for (item of cart.favorites(); track item.id) {
+                  <div class="menu-fav-item">
+                    <strong>{{ item.nombre }}</strong>
+                    <small>{{ item.precio ?? 0 | currency: 'USD' }}</small>
+                  </div>
+                }
+              </div>
+              <div class="menu-divider"></div>
+              <button type="button" class="menu-item danger" (click)="logout()">
+                Cerrar sesion
+              </button>
+            </div>
+          }
         </div>
-      </div>
+      }
     </nav>
   </header>
 

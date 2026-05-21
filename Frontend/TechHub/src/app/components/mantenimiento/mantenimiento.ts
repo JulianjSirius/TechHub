@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api';
 import { Producto } from '../../models/producto';
@@ -16,7 +16,7 @@ interface MantenimientoAgendado {
 @Component({
   selector: 'app-mantenimiento',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule, DatePipe],
   templateUrl: './mantenimiento.html',
   styleUrls: ['./mantenimiento.css'],
 })

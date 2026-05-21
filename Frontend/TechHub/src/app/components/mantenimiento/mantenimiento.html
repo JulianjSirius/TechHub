@@ -5,12 +5,12 @@
     <p>Soporte especializado para el hardware y software de tu empresa.</p>
   </div>
 
-  <div *ngIf="error()" class="toast-alert toast-error">
-    <span class="icon">⚠️</span> {{ error() }}
-  </div>
-  <div *ngIf="success()" class="toast-alert toast-success">
-    <span class="icon">✅</span> {{ success() }}
-  </div>
+  @if (error()) {
+    <div class="toast-alert toast-error"><span class="icon">⚠️</span> {{ error() }}</div>
+  }
+  @if (success()) {
+    <div class="toast-alert toast-success"><span class="icon">✅</span> {{ success() }}</div>
+  }
 
   <div class="content-grid">
     <div class="main-column">
@@ -19,27 +19,28 @@
           <h2>1. Elige el Servicio Requerido</h2>
         </div>
         <div class="services-grid">
-          <div
-            *ngFor="let servicio of servicios"
-            class="service-card"
-            [class.active]="servicio.id === servicioId()"
-            (click)="servicioId.set(servicio.id)"
-          >
-            <div class="service-icon">
-              {{
-                servicio.id === 1
-                  ? '🛡️'
-                  : servicio.id === 2
-                    ? '🔄'
-                    : servicio.id === 3
-                      ? '🩺'
-                      : '📡'
-              }}
+          @for (servicio of servicios; track servicio.id) {
+            <div
+              class="service-card"
+              [class.active]="servicio.id === servicioId()"
+              (click)="servicioId.set(servicio.id)"
+            >
+              <div class="service-icon">
+                {{
+                  servicio.id === 1
+                    ? '🛡️'
+                    : servicio.id === 2
+                      ? '🔄'
+                      : servicio.id === 3
+                        ? '🩺'
+                        : '📡'
+                }}
+              </div>
+              <h3>{{ servicio.titulo }}</h3>
+              <p>{{ servicio.descripcion }}</p>
+              <div class="active-indicator"></div>
             </div>
-            <h3>{{ servicio.titulo }}</h3>
-            <p>{{ servicio.descripcion }}</p>
-            <div class="active-indicator"></div>
-          </div>
+          }
         </div>
       </section>
 
@@ -60,9 +61,11 @@
                   required
                 >
                   <option [ngValue]="0" disabled>-- Selecciona un producto --</option>
-                  <option *ngFor="let producto of productos()" [ngValue]="producto.id">
-                    {{ producto.nombre }} ({{ producto.marca || 'Genérico' }})
-                  </option>
+                  @for (producto of productos(); track producto.id) {
+                    <option [ngValue]="producto.id">
+                      {{ producto.nombre }} ({{ producto.marca || 'Genérico' }})
+                    </option>
+                  }
                 </select>
               </div>
             </div>
@@ -103,38 +106,49 @@
       </section>
     </div>
 
-    <div class="side-column" *ngIf="tieneMantenimientos">
-      <section class="card-section history-section">
-        <div class="section-header">
-          <h2>Tickets de Soporte</h2>
-          <span class="count-badge">{{ totalMantenimientos }}</span>
-        </div>
-
-        <div class="history-list">
-          <div class="ticket-card" *ngFor="let item of mantenimientos()">
-            <div class="ticket-header">
-              <span class="status-badge" [ngClass]="item.estado.toLowerCase()">{{
-                item.estado
-              }}</span>
-              <small>{{ item.fecha | date: 'short' }}</small>
-            </div>
-
-            <div class="ticket-body">
-              <strong>{{ obtenerNombreProducto(item.productoId) }}</strong>
-              <span>{{ servicios[item.servicioId - 1]?.titulo }}</span>
-            </div>
-
-            <div class="ticket-actions" *ngIf="item.estado !== 'Finalizado'">
-              <button (click)="finalizarMantenimiento(item.id)" class="btn-sm btn-success">
-                Solucionado
-              </button>
-              <button (click)="cancelarMantenimiento(item.id)" class="btn-sm btn-danger">
-                Cancelar
-              </button>
-            </div>
+    @if (tieneMantenimientos) {
+      <div class="side-column">
+        <section class="card-section history-section">
+          <div class="section-header">
+            <h2>Tickets de Soporte</h2>
+            <span class="count-badge">{{ totalMantenimientos }}</span>
           </div>
-        </div>
-      </section>
-    </div>
+
+          <div class="history-list">
+            @for (item of mantenimientos(); track item.id) {
+              <div class="ticket-card">
+                <div class="ticket-header">
+                  <span
+                    class="status-badge"
+                    [class.pendiente]="item.estado === 'Pendiente'"
+                    [class.programado]="item.estado === 'Programado'"
+                    [class.finalizado]="item.estado === 'Finalizado'"
+                  >
+                    {{ item.estado }}
+                  </span>
+                  <small>{{ item.fecha | date: 'short' }}</small>
+                </div>
+
+                <div class="ticket-body">
+                  <strong>{{ obtenerNombreProducto(item.productoId) }}</strong>
+                  <span>{{ servicios[item.servicioId - 1]?.titulo }}</span>
+                </div>
+
+                @if (item.estado !== 'Finalizado') {
+                  <div class="ticket-actions">
+                    <button (click)="finalizarMantenimiento(item.id)" class="btn-sm btn-success">
+                      Solucionado
+                    </button>
+                    <button (click)="cancelarMantenimiento(item.id)" class="btn-sm btn-danger">
+                      Cancelar
+                    </button>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </section>
+      </div>
+    }
   </div>
 </div>

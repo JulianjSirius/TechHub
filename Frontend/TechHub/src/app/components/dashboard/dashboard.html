@@ -31,33 +31,35 @@
     </div>
   </div>
 
-  <section class="logic-section" *ngIf="auth.isLoggedIn()">
-    <div class="logic-header">
-      <span class="pill">Como operamos</span>
-      <h2>La logica TechHub en tres pasos</h2>
-      <p>Un flujo claro para que tu equipo tenga productos, clases y soporte sin friccion.</p>
-    </div>
+  @if (auth.isLoggedIn()) {
+    <section class="logic-section">
+      <div class="logic-header">
+        <span class="pill">Como operamos</span>
+        <h2>La logica TechHub en tres pasos</h2>
+        <p>Un flujo claro para que tu equipo tenga productos, clases y soporte sin friccion.</p>
+      </div>
 
-    <div class="logic-grid">
-      <article class="logic-card">
-        <span class="logic-step">01</span>
-        <h3>Diagnostico inteligente</h3>
-        <p>
-          Leemos tus necesidades y recomendamos soluciones segun industria, equipo y presupuesto.
-        </p>
-      </article>
+      <div class="logic-grid">
+        <article class="logic-card">
+          <span class="logic-step">01</span>
+          <h3>Diagnostico inteligente</h3>
+          <p>
+            Leemos tus necesidades y recomendamos soluciones segun industria, equipo y presupuesto.
+          </p>
+        </article>
 
-      <article class="logic-card">
-        <span class="logic-step">02</span>
-        <h3>Implementacion guiada</h3>
-        <p>Configuramos la compra, agendamos capacitaciones y asignamos soporte proactivo.</p>
-      </article>
+        <article class="logic-card">
+          <span class="logic-step">02</span>
+          <h3>Implementacion guiada</h3>
+          <p>Configuramos la compra, agendamos capacitaciones y asignamos soporte proactivo.</p>
+        </article>
 
-      <article class="logic-card">
-        <span class="logic-step">03</span>
-        <h3>Mejora continua</h3>
-        <p>Monitoreamos el uso y proponemos ajustes para mantener el rendimiento.</p>
-      </article>
-    </div>
-  </section>
+        <article class="logic-card">
+          <span class="logic-step">03</span>
+          <h3>Mejora continua</h3>
+          <p>Monitoreamos el uso y proponemos ajustes para mantener el rendimiento.</p>
+        </article>
+      </div>
+    </section>
+  }
 </div>

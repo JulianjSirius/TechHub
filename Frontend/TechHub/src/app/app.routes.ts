@@ -8,6 +8,7 @@ import { Clases } from './components/clases/clases';
 import { Servicios } from './components/servicios/servicios';
 import { GuiaUsuario } from './components/guia-usuario/guia-usuario';
 import { Mantenimiento } from './components/mantenimiento/mantenimiento';
+import { Opciones } from './components/opciones/opciones';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: 'Productos', component: Productos },
   { path: 'Clases', component: Clases },
   { path: 'servicios', component: Servicios },
+  { path: 'opciones', component: Opciones },
   { path: 'mantenimiento', component: Mantenimiento },
   { path: '**', redirectTo: 'login' },
 ];

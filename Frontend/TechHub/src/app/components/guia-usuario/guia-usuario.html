@@ -3,11 +3,13 @@
   <h1>Guía de cómo funciona TechHub</h1>
 
   <div class="pasos-grid">
-    <div class="paso-card" *ngFor="let paso of pasos">
-      <div class="numero-circulo">{{ paso.numero }}</div>
-      <span class="icono-grande">{{ paso.icono }}</span>
-      <h2>{{ paso.titulo }}</h2>
-      <p>{{ paso.descripcion }}</p>
-    </div>
+    @for (paso of pasos; track paso.numero) {
+      <div class="paso-card">
+        <div class="numero-circulo">{{ paso.numero }}</div>
+        <span class="icono-grande">{{ paso.icono }}</span>
+        <h2>{{ paso.titulo }}</h2>
+        <p>{{ paso.descripcion }}</p>
+      </div>
+    }
   </div>
 </div>

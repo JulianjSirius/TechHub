@@ -1,7 +1,7 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { Usuario } from '../models/usuario';
 
-type AuthUser = Pick<Usuario, 'id' | 'nombre' | 'correo'>;
+type AuthUser = Pick<Usuario, 'id' | 'nombre' | 'correo' | 'direccion'>;
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,7 @@ export class AuthService {
   readonly user = this.userSignal.asReadonly();
   readonly isLoggedIn = computed(() => Boolean(this.userSignal()));
   readonly userName = computed(() => this.userSignal()?.nombre ?? 'Usuario');
+  readonly userAddress = computed(() => this.userSignal()?.direccion ?? '');
 
   constructor() {
     this.loadFromStorage();
@@ -23,10 +24,11 @@ export class AuthService {
       id: user.id,
       nombre: user.nombre,
       correo: user.correo,
+      direccion: user.direccion,
     };
 
     this.userSignal.set(safeUser);
-    localStorage.setItem(this.storageKey, JSON.stringify(safeUser));
+    this.persist();
 
     if (user.id !== undefined && user.id !== null) {
       localStorage.setItem('usuarioId', String(user.id));
@@ -37,6 +39,11 @@ export class AuthService {
     this.userSignal.set(null);
     localStorage.removeItem(this.storageKey);
     localStorage.removeItem('usuarioId');
+  }
+
+  updateProfile(data: Partial<AuthUser>) {
+    this.userSignal.update((current) => (current ? { ...current, ...data } : current));
+    this.persist();
   }
 
   private loadFromStorage() {
@@ -50,5 +57,11 @@ export class AuthService {
       this.userSignal.set(null);
       localStorage.removeItem(this.storageKey);
     }
+  }
+
+  private persist() {
+    const current = this.userSignal();
+    if (!current) return;
+    localStorage.setItem(this.storageKey, JSON.stringify(current));
   }
 }

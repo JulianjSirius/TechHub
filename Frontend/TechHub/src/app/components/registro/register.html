@@ -23,7 +23,8 @@
           id="nombre"
           name="nombre"
           type="text"
-          [(ngModel)]="nombre"
+          [ngModel]="nombre()"
+          (ngModelChange)="nombre.set($event)"
           required
           placeholder="Tu nombre"
         />
@@ -35,7 +36,8 @@
           id="correo"
           name="correo"
           type="email"
-          [(ngModel)]="correo"
+          [ngModel]="correo()"
+          (ngModelChange)="correo.set($event)"
           required
           placeholder="correo@ejemplo.com"
         />
@@ -47,7 +49,8 @@
           id="contrasena"
           name="contrasena"
           type="password"
-          [(ngModel)]="contrasena"
+          [ngModel]="contrasena()"
+          (ngModelChange)="contrasena.set($event)"
           required
           placeholder="********"
         />
@@ -59,17 +62,22 @@
           id="confirmContrasena"
           name="confirmContrasena"
           type="password"
-          [(ngModel)]="confirmContrasena"
+          [ngModel]="confirmContrasena()"
+          (ngModelChange)="confirmContrasena.set($event)"
           required
           placeholder="********"
         />
       </div>
 
-      <div *ngIf="error" class="error-message">{{ error }}</div>
-      <div *ngIf="mensaje" class="success-message">{{ mensaje }}</div>
+      @if (error()) {
+        <div class="error-message">{{ error() }}</div>
+      }
+      @if (mensaje()) {
+        <div class="success-message">{{ mensaje() }}</div>
+      }
 
-      <button class="btn btn-primary submit" type="submit" [disabled]="form.invalid || loading">
-        {{ loading ? 'Registrando...' : 'Registrarme' }}
+      <button class="btn btn-primary submit" type="submit" [disabled]="form.invalid || loading()">
+        {{ loading() ? 'Registrando...' : 'Registrarme' }}
       </button>
 
       <div class="secondary">

@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api';
 import { Clase } from '../../models/clases';
@@ -14,7 +14,7 @@ interface ClaseReservada {
 @Component({
   selector: 'app-clases',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule, DatePipe],
   templateUrl: './clases.html',
   styleUrls: ['./clases.css'],
 })

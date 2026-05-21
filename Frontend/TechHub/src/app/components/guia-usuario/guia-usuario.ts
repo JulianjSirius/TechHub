@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-guia-usuario',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './guia-usuario.html',
   styleUrls: ['./guia-usuario.css'],
 })
 export class GuiaUsuario {
-
   pasos = [
     {
       numero: 1,
@@ -17,14 +15,13 @@ export class GuiaUsuario {
         'Navega por nuestra sección de Productos. Encontrarás Hardware de última generación y Licencias de Software profesional.',
       icono: '💻',
     },
-{
+    {
       numero: 2,
       titulo: 'Selecciona tu Producto',
       descripcion:
         'Haz clic en el producto que te interese para ver detalles, especificaciones y opciones de compra y pago.',
       icono: '🔍',
-
-},
+    },
     {
       numero: 3,
       titulo: 'Agenda tu clase',

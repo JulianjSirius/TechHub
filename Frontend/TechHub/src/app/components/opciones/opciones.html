@@ -1,0 +1,109 @@
+<div class="options-container">
+  <div class="options-header">
+    <span class="pill">Opciones</span>
+    <h1>Configuracion de cuenta</h1>
+    <p>Administra tu perfil, direccion y seguridad desde un solo lugar.</p>
+  </div>
+
+  <div class="options-grid">
+    <section class="options-card">
+      <div class="card-header">
+        <h2>Datos personales</h2>
+        <p>Actualiza tu nombre y la direccion principal de envios.</p>
+      </div>
+
+      <form class="options-form" (ngSubmit)="guardarPerfil()">
+        <div class="field">
+          <label for="nombre">Nombre de usuario</label>
+          <input
+            id="nombre"
+            name="nombre"
+            type="text"
+            [ngModel]="nombre()"
+            (ngModelChange)="nombre.set($event)"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="direccion">Direccion</label>
+          <textarea
+            id="direccion"
+            name="direccion"
+            rows="3"
+            [ngModel]="direccion()"
+            (ngModelChange)="direccion.set($event)"
+            placeholder="Ej. Avenida Central 123, San Jose"
+          ></textarea>
+        </div>
+
+        @if (perfilError()) {
+          <div class="error-message">{{ perfilError() }}</div>
+        }
+        @if (perfilMensaje()) {
+          <div class="success-message">{{ perfilMensaje() }}</div>
+        }
+
+        <button class="btn btn-primary" type="submit" [disabled]="perfilLoading()">
+          {{ perfilLoading() ? 'Guardando...' : 'Guardar cambios' }}
+        </button>
+      </form>
+    </section>
+
+    <section class="options-card">
+      <div class="card-header">
+        <h2>Seguridad</h2>
+        <p>Cambia tu contraseña cuando lo necesites.</p>
+      </div>
+
+      <form class="options-form" (ngSubmit)="cambiarContrasena()">
+        <div class="field">
+          <label for="contrasenaActual">Contraseña actual</label>
+          <input
+            id="contrasenaActual"
+            name="contrasenaActual"
+            type="password"
+            [ngModel]="contrasenaActual()"
+            (ngModelChange)="contrasenaActual.set($event)"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="nuevaContrasena">Nueva contraseña</label>
+          <input
+            id="nuevaContrasena"
+            name="nuevaContrasena"
+            type="password"
+            [ngModel]="nuevaContrasena()"
+            (ngModelChange)="nuevaContrasena.set($event)"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="confirmarContrasena">Confirmar nueva contraseña</label>
+          <input
+            id="confirmarContrasena"
+            name="confirmarContrasena"
+            type="password"
+            [ngModel]="confirmarContrasena()"
+            (ngModelChange)="confirmarContrasena.set($event)"
+            required
+          />
+        </div>
+
+        @if (seguridadError()) {
+          <div class="error-message">{{ seguridadError() }}</div>
+        }
+        @if (seguridadMensaje()) {
+          <div class="success-message">{{ seguridadMensaje() }}</div>
+        }
+
+        <button class="btn btn-primary" type="submit" [disabled]="seguridadLoading()">
+          {{ seguridadLoading() ? 'Actualizando...' : 'Actualizar contraseña' }}
+        </button>
+      </form>
+    </section>
+  </div>
+</div>

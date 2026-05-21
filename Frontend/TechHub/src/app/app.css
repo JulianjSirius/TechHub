@@ -185,6 +185,8 @@
   flex-direction: column;
   gap: 0.2rem;
   z-index: 20;
+  max-height: 420px;
+  overflow: auto;
 }
 
 .menu-item {
@@ -216,6 +218,63 @@
   height: 1px;
   background: var(--line);
   margin: 0.3rem 0;
+}
+
+.menu-section {
+  padding: 0.4rem 0.5rem 0.6rem;
+  border-radius: 12px;
+  background: rgba(27, 142, 166, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.menu-section-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--teal-strong);
+}
+
+.menu-empty {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.menu-cart-item,
+.menu-fav-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.menu-cart-item strong,
+.menu-fav-item strong {
+  display: block;
+  font-size: 0.85rem;
+}
+
+.menu-cart-item small,
+.menu-fav-item small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.menu-cart-total {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.menu-cart-summary {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .app-main {

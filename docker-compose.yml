@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: techhub_db
+    environment:
+      POSTGRES_DB: TechHubDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+    ports:
+      - "5432:5432"
+    volumes:
+      - techhub_db_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./TechHub_Solutions
+      dockerfile: ./TechHub.API/Dockerfile
+    container_name: techhub_api
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: Host=db;Database=TechHubDB;Username=postgres;Password=12345
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  techhub_db_data:

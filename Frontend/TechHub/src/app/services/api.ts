@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { Producto } from '../models/producto';
 import { Login } from '../models/login';
 import { RegistroUsuario } from '../models/registrousuario';
-import { Usuario } from '../models/usuario';
 import { Clase } from '../models/clases'; // ✅ Agregada la importación
+import { Usuario } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +25,24 @@ export class ApiService {
     return this.http.post<Usuario>(`${this.apiUrl}/usuarios/login`, credenciales);
   }
 
+  actualizarPerfil(usuarioId: number, payload: { nombre: string; direccion?: string | null }) {
+    return this.http.put<Usuario>(`${this.apiUrl}/usuarios/${usuarioId}/perfil`, payload);
+  }
+
+  cambiarContrasena(
+    usuarioId: number,
+    payload: { contrasenaActual: string; nuevaContrasena: string },
+  ) {
+    return this.http.put<{ mensaje: string }>(
+      `${this.apiUrl}/usuarios/${usuarioId}/contrasena`,
+      payload,
+    );
+  }
+
+  recuperarContrasena(payload: { correo: string; nuevaContrasena: string }) {
+    return this.http.post<{ mensaje: string }>(`${this.apiUrl}/usuarios/recuperar`, payload);
+  }
+
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.apiUrl}/usuarios`);
   }
@@ -32,7 +50,6 @@ export class ApiService {
   getProductos(): Observable<Producto[]> {
     return this.http.get<Producto[]>(`${this.apiUrl}/productos`);
   }
-
 
   getClases(): Observable<Clase[]> {
     return this.http.get<Clase[]>(`${this.apiUrl}/clases`);
@@ -42,7 +59,6 @@ export class ApiService {
     return this.http.post<{ mensaje: string }>(`${this.apiUrl}/clases/agendar`, datosReserva);
   }
 
- 
   crearMantenimiento(datosMantenimiento: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/mantenimientos`, datosMantenimiento);
   }

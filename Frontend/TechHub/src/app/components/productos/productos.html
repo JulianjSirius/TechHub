@@ -5,9 +5,9 @@
     <p>Equipos, licencias y accesorios de alto rendimiento para tu negocio.</p>
   </div>
 
-  <div *ngIf="error()" class="toast-alert toast-error">
-    <span class="icon">⚠️</span> {{ error() }}
-  </div>
+  @if (error()) {
+    <div class="toast-alert toast-error"><span class="icon">⚠️</span> {{ error() }}</div>
+  }
 
   <div class="content-grid">
     <div class="main-column">
@@ -27,15 +27,16 @@
                 (ngModelChange)="onSearchChange($event)"
                 aria-label="Buscar productos"
               />
-              <button
-                *ngIf="searchTerm()"
-                type="button"
-                class="clear-btn"
-                (click)="onSearchChange('')"
-                aria-label="Limpiar busqueda"
-              >
-                x
-              </button>
+              @if (searchTerm()) {
+                <button
+                  type="button"
+                  class="clear-btn"
+                  (click)="onSearchChange('')"
+                  aria-label="Limpiar busqueda"
+                >
+                  x
+                </button>
+              }
             </div>
             <button
               class="btn-icon"
@@ -48,85 +49,97 @@
           </div>
         </div>
 
-        <div class="results-hint" *ngIf="!loading() && productos().length > 0">
-          {{ filteredProductos().length }} resultados
-        </div>
+        @if (!loading() && productos().length > 0) {
+          <div class="results-hint">{{ filteredProductos().length }} resultados</div>
+        }
 
-        <div *ngIf="!loading() && productos().length === 0" class="empty-state">
-          <span class="empty-icon">📦</span>
-          <p>No hay productos disponibles en este momento.</p>
-        </div>
+        @if (!loading() && productos().length === 0) {
+          <div class="empty-state">
+            <span class="empty-icon">📦</span>
+            <p>No hay productos disponibles en este momento.</p>
+          </div>
+        }
 
-        <div
-          *ngIf="!loading() && productos().length > 0 && filteredProductos().length === 0"
-          class="empty-state"
-        >
-          <span class="empty-icon">🔎</span>
-          <p>No se encontraron productos para la busqueda.</p>
-        </div>
+        @if (!loading() && productos().length > 0 && filteredProductos().length === 0) {
+          <div class="empty-state">
+            <span class="empty-icon">🔎</span>
+            <p>No se encontraron productos para la busqueda.</p>
+          </div>
+        }
 
-        <div *ngIf="loading()" class="grid-cards skeleton-grid" aria-hidden="true">
-          <div class="producto-card skeleton" *ngFor="let _ of skeletons"></div>
-        </div>
+        @if (loading()) {
+          <div class="grid-cards skeleton-grid" aria-hidden="true">
+            @for (item of skeletons; track $index) {
+              <div class="producto-card skeleton"></div>
+            }
+          </div>
+        }
 
-        <div class="grid-cards" *ngIf="!loading() && filteredProductos().length > 0">
-          <div
-            class="producto-card"
-            *ngFor="let item of visibleProductos(); let i = index"
-            [style.--i]="i"
-          >
-            <div class="producto-badge">Envío rápido</div>
-
-            <div class="producto-info">
-              <h3>{{ item.nombre }}</h3>
-              <p class="descripcion">{{ item.descripcion ?? 'Sin descripción detallada' }}</p>
-            </div>
-
-            <div class="producto-footer">
-              <span class="precio">{{ item.precio | currency: 'USD' }}</span>
-
-              <button
-                *ngIf="obtenerCantidad(item.id) === 0"
-                class="btn btn-primary btn-sm"
-                (click)="agregarAlCarrito(item)"
-              >
-                + Añadir
-              </button>
-
-              <div *ngIf="obtenerCantidad(item.id) > 0" class="cantidad-control">
+        @if (!loading() && filteredProductos().length > 0) {
+          <div class="grid-cards">
+            @for (item of visibleProductos(); track item.id; let i = $index) {
+              <div class="producto-card" [style.--i]="i">
+                <div class="producto-badge">Envío rápido</div>
                 <button
                   type="button"
-                  (click)="cambiarCantidad(item.id, obtenerCantidad(item.id) - 1)"
+                  class="favorite-btn"
+                  [class.active]="esFavorito(item.id)"
+                  (click)="toggleFavorito(item)"
+                  aria-label="Marcar como favorito"
                 >
-                  −
+                  ❤
                 </button>
-                <span>{{ obtenerCantidad(item.id) }}</span>
-                <button type="button" (click)="agregarAlCarrito(item)">+</button>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div
-          class="pagination"
-          *ngIf="!loading() && filteredProductos().length > 0 && totalPages() > 1"
-        >
-          <button class="btn btn-ghost" (click)="prevPage()" [disabled]="!hasPrev()">
-            Anterior
-          </button>
-          <button
-            class="page-btn"
-            *ngFor="let page of pageNumbers()"
-            [class.active]="pageIndex() === page"
-            (click)="setPage(page)"
-          >
-            {{ page + 1 }}
-          </button>
-          <button class="btn btn-ghost" (click)="nextPage()" [disabled]="!hasNext()">
-            Siguiente
-          </button>
-          <span class="page-info">Pagina {{ pageIndex() + 1 }} de {{ totalPages() }}</span>
-        </div>
+                <div class="producto-info">
+                  <h3>{{ item.nombre }}</h3>
+                  <p class="descripcion">{{ item.descripcion ?? 'Sin descripción detallada' }}</p>
+                </div>
+
+                <div class="producto-footer">
+                  <span class="precio">{{ item.precio | currency: 'USD' }}</span>
+
+                  @if (obtenerCantidad(item.id) === 0) {
+                    <button class="btn btn-primary btn-sm" (click)="agregarAlCarrito(item)">
+                      + Añadir
+                    </button>
+                  } @else {
+                    <div class="cantidad-control">
+                      <button
+                        type="button"
+                        (click)="cambiarCantidad(item.id, obtenerCantidad(item.id) - 1)"
+                      >
+                        −
+                      </button>
+                      <span>{{ obtenerCantidad(item.id) }}</span>
+                      <button type="button" (click)="agregarAlCarrito(item)">+</button>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+
+        @if (!loading() && filteredProductos().length > 0 && totalPages() > 1) {
+          <div class="pagination">
+            <button class="btn btn-ghost" (click)="prevPage()" [disabled]="!hasPrev()">
+              Anterior
+            </button>
+            @for (page of pageNumbers(); track page) {
+              <button
+                class="page-btn"
+                [class.active]="pageIndex() === page"
+                (click)="setPage(page)"
+              >
+                {{ page + 1 }}
+              </button>
+            }
+            <button class="btn btn-ghost" (click)="nextPage()" [disabled]="!hasNext()">
+              Siguiente
+            </button>
+            <span class="page-info">Pagina {{ pageIndex() + 1 }} de {{ totalPages() }}</span>
+          </div>
+        }
       </section>
     </div>
 
@@ -134,62 +147,120 @@
       <aside class="card-section cart-container">
         <div class="section-header">
           <h2>Tu Carrito</h2>
-          <span class="badge" *ngIf="cart().length > 0">{{ cart().length }} items</span>
+          @if (cart().length > 0) {
+            <span class="badge">{{ cart().length }} items</span>
+          }
         </div>
 
-        <div *ngIf="cart().length === 0" class="empty-cart">
-          <span class="empty-icon">🛒</span>
-          <p>Tu carrito está vacío.<br /><small>¡Agrega algunos productos!</small></p>
-        </div>
-
-        <ul *ngIf="cart().length > 0" class="cart-items">
-          <li *ngFor="let item of cart()" class="cart-item">
-            <div class="item-details">
-              <strong>{{ item.producto.nombre }}</strong>
-              <span class="item-price">{{ item.producto.precio ?? 0 | currency: 'USD' }} c/u</span>
-            </div>
-
-            <div class="item-actions">
-              <div class="cantidad-control small">
-                <button
-                  type="button"
-                  (click)="cambiarCantidad(item.producto.id, item.cantidad - 1)"
-                >
-                  −
-                </button>
-                <span>{{ item.cantidad }}</span>
-                <button
-                  type="button"
-                  (click)="cambiarCantidad(item.producto.id, item.cantidad + 1)"
-                >
-                  +
-                </button>
-              </div>
-              <div class="item-subtotal-group">
-                <span class="subtotal">{{
-                  (item.producto.precio ?? 0) * item.cantidad | currency: 'USD'
-                }}</span>
-                <button
-                  class="btn-remove"
-                  (click)="quitarDelCarrito(item.producto.id)"
-                  title="Eliminar del carrito"
-                >
-                  🗑️
-                </button>
-              </div>
-            </div>
-          </li>
-        </ul>
-
-        <div *ngIf="cart().length > 0" class="cart-summary">
-          <div class="summary-row total">
-            <span>Total a pagar</span>
-            <strong>{{ total() | currency: 'USD' }}</strong>
+        @if (cart().length === 0) {
+          <div class="empty-cart">
+            <span class="empty-icon">🛒</span>
+            <p>Tu carrito está vacío.<br /><small>¡Agrega algunos productos!</small></p>
           </div>
-          <button class="btn btn-primary w-100 mt-3" style="font-size: 1.05rem; padding: 1rem">
-            Proceder al pago
-          </button>
+        }
+
+        @if (cart().length > 0) {
+          <ul class="cart-items">
+            @for (item of cart(); track item.producto.id) {
+              <li class="cart-item">
+                <div class="item-details">
+                  <strong>{{ item.producto.nombre }}</strong>
+                  <span class="item-price">
+                    {{ item.producto.precio ?? 0 | currency: 'USD' }} c/u
+                  </span>
+                </div>
+
+                <div class="item-actions">
+                  <div class="cantidad-control small">
+                    <button
+                      type="button"
+                      (click)="cambiarCantidad(item.producto.id, item.cantidad - 1)"
+                    >
+                      −
+                    </button>
+                    <span>{{ item.cantidad }}</span>
+                    <button
+                      type="button"
+                      (click)="cambiarCantidad(item.producto.id, item.cantidad + 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div class="item-subtotal-group">
+                    <span class="subtotal">{{
+                      (item.producto.precio ?? 0) * item.cantidad | currency: 'USD'
+                    }}</span>
+                    <button
+                      class="btn-remove"
+                      (click)="quitarDelCarrito(item.producto.id)"
+                      title="Eliminar del carrito"
+                    >
+                      🗑️
+                    </button>
+                  </div>
+                </div>
+              </li>
+            }
+          </ul>
+        }
+
+        @if (cart().length > 0) {
+          <div class="cart-summary">
+            <div class="summary-row total">
+              <span>Total a pagar</span>
+              <strong>{{ total() | currency: 'USD' }}</strong>
+            </div>
+            <button class="btn btn-primary w-100 mt-3" style="font-size: 1.05rem; padding: 1rem">
+              Proceder al pago
+            </button>
+          </div>
+        }
+      </aside>
+
+      <aside class="card-section favorites-container">
+        <div class="section-header">
+          <h2>Favoritos</h2>
+          @if (favoritesCount() > 0) {
+            <span class="badge">{{ favoritesCount() }} items</span>
+          }
         </div>
+
+        @if (favoritesCount() === 0) {
+          <div class="empty-cart">
+            <span class="empty-icon">💾</span>
+            <p>Guarda tus productos favoritos para volver despues.</p>
+          </div>
+        }
+
+        @if (favoritesCount() > 0) {
+          <ul class="favorites-list">
+            @for (item of favorites(); track item.id) {
+              <li class="favorite-item">
+                <div class="item-details">
+                  <strong>{{ item.nombre }}</strong>
+                  <span class="item-price">{{ item.precio ?? 0 | currency: 'USD' }}</span>
+                </div>
+                <div class="favorite-actions">
+                  <button
+                    class="btn btn-ghost"
+                    type="button"
+                    (click)="agregarFavoritoAlCarrito(item)"
+                  >
+                    Agregar
+                  </button>
+                  <button
+                    class="btn-remove"
+                    type="button"
+                    (click)="quitarFavorito(item.id)"
+                    title="Quitar favorito"
+                  >
+                    🗑️
+                  </button>
+                </div>
+              </li>
+            }
+          </ul>
+        }
       </aside>
     </div>
   </div>
