@@ -4,4 +4,6 @@ export interface Usuario {
   correo: string;
   contrasena: string;
   direccion?: string;
+  rol: 'Pasajero' | 'Piloto';
+  licencia?: string;
 }

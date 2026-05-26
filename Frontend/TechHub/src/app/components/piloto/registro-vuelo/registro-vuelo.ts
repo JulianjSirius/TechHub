@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ApiService } from '../../services/api';
-import { Vuelo } from '../../models/vuelo';
+import { ApiService } from '../../../services/api';
+import { Vuelo } from '../../../models/vuelo';
 
 @Component({
   selector: 'app-registro-vuelo',

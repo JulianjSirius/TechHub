@@ -1,22 +1,14 @@
-<div class="form-shell">
-  <section class="info-card">
-    <span class="pill">Vuelos</span>
-    <h1>Registro de vuelos</h1>
-    <p>Planifica nuevas rutas y define fechas de salida en un solo paso.</p>
-    <ul class="info-list">
-      <li>Define el origen y destino.</li>
-      <li>Selecciona fecha y hora de salida.</li>
-      <li>Valida los datos antes de guardar.</li>
-    </ul>
-  </section>
-
-  <section class="form-card">
-    <div class="form-header">
-      <h2>Datos del vuelo</h2>
-      <p>Completa los campos para registrar.</p>
+<div style="max-width:600px;">
+  <div class="page-header">
+    <div>
+      <span class="badge badge-accent">Vuelos</span>
+      <h1 style="margin-top:0.5rem;">Registro de vuelos</h1>
+      <p>Planifica nuevas rutas y define fechas de salida.</p>
     </div>
+  </div>
 
-    <form class="form-grid" (ngSubmit)="registrar()" #form="ngForm">
+  <div class="card" style="padding:1.5rem;">
+    <form (ngSubmit)="registrar()" #form="ngForm">
       <div class="field">
         <label for="origen">Origen</label>
         <input
@@ -26,11 +18,11 @@
           [ngModel]="origen()"
           (ngModelChange)="origen.set($event)"
           required
-          placeholder="Ciudad o codigo"
+          placeholder="Ciudad o código"
         />
       </div>
 
-      <div class="field">
+      <div class="field" style="margin-top:1rem;">
         <label for="destino">Destino</label>
         <input
           id="destino"
@@ -39,11 +31,11 @@
           [ngModel]="destino()"
           (ngModelChange)="destino.set($event)"
           required
-          placeholder="Ciudad o codigo"
+          placeholder="Ciudad o código"
         />
       </div>
 
-      <div class="field">
+      <div class="field" style="margin-top:1rem;">
         <label for="fechaSalida">Fecha de salida</label>
         <input
           id="fechaSalida"
@@ -56,15 +48,15 @@
       </div>
 
       @if (error()) {
-        <div class="alert error">{{ error() }}</div>
+        <div class="alert alert-error" style="margin-top:1rem;">{{ error() }}</div>
       }
       @if (mensaje()) {
-        <div class="alert success">{{ mensaje() }}</div>
+        <div class="alert alert-success" style="margin-top:1rem;">{{ mensaje() }}</div>
       }
 
-      <button class="btn btn-primary" type="submit" [disabled]="form.invalid || loading()">
+      <button class="btn btn-primary" type="submit" style="margin-top:1.25rem;" [disabled]="form.invalid || loading()">
         {{ loading() ? 'Guardando...' : 'Registrar vuelo' }}
       </button>
     </form>
-  </section>
+  </div>
 </div>

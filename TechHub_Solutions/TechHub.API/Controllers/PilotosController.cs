@@ -23,14 +23,10 @@ namespace TechHub.API.Controllers
         public async Task<ActionResult<IEnumerable<PilotoDTO>>> GetPilotos()
         {
             var pilotos = await _pilotosService.ObtenerPilotosAsync();
-
             var pilotosDto = pilotos.Select(p => new PilotoDTO
             {
-                Id = p.Id,
-                Nombre = p.Nombre,
-                Licencia = p.Licencia
+                Id = p.Id, Nombre = p.Nombre, Licencia = p.Licencia
             }).ToList();
-
             return Ok(pilotosDto);
         }
 
@@ -38,26 +34,27 @@ namespace TechHub.API.Controllers
         public async Task<ActionResult<PilotoDTO>> GetPiloto(int id)
         {
             var piloto = await _pilotosService.ObtenerPilotoPorIdAsync(id);
+            if (piloto == null) return NotFound();
 
-            if (piloto == null)
-            {
-                return NotFound();
-            }
-
-            var dto = new PilotoDTO
-            {
-                Id = piloto.Id,
-                Nombre = piloto.Nombre,
-                Licencia = piloto.Licencia
-            };
-
+            var dto = new PilotoDTO { Id = piloto.Id, Nombre = piloto.Nombre, Licencia = piloto.Licencia };
             return Ok(dto);
         }
 
         [HttpPost]
-        public ActionResult<PilotoDTO> CrearPiloto([FromBody] PilotoDTO pilotoDto)
+        public async Task<ActionResult<PilotoDTO>> CrearPiloto([FromBody] PilotoDTO pilotoDto)
         {
-            return StatusCode(403, "La creacion de pilotos no esta permitida para clientes.");
+            if (pilotoDto == null || string.IsNullOrWhiteSpace(pilotoDto.Nombre) || string.IsNullOrWhiteSpace(pilotoDto.Licencia))
+                return BadRequest("Nombre y licencia son obligatorios.");
+
+            var nuevoPiloto = new Piloto
+            {
+                Nombre = pilotoDto.Nombre,
+                Licencia = pilotoDto.Licencia
+            };
+
+            var creado = await _pilotosService.CrearPilotoAsync(nuevoPiloto);
+            var dto = new PilotoDTO { Id = creado.Id, Nombre = creado.Nombre, Licencia = creado.Licencia };
+            return CreatedAtAction(nameof(GetPiloto), new { id = dto.Id }, dto);
         }
     }
 }

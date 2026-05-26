@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@codesandbox/nodebox": "^0.1.9",
     "@omnedia/ngx-map": "^4.0.1",
     "dotted-map": "^2.2.3"
   }

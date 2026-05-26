@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TechHub.API.DateTransfer;
 using TechHub.Application.Interfaces;
 using TechHub.Domain.Entidades;
+using System.Linq;
 
 namespace TechHub.API.Controllers
 {
@@ -13,10 +14,12 @@ namespace TechHub.API.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly IUsuariosService _usuariosService;
+        private readonly IPilotosService _pilotosService;
 
-        public UsuariosController(IUsuariosService usuariosService)
+        public UsuariosController(IUsuariosService usuariosService, IPilotosService pilotosService)
         {
             _usuariosService = usuariosService;
+            _pilotosService = pilotosService;
         }
 
         [HttpGet]
@@ -67,15 +70,30 @@ namespace TechHub.API.Controllers
                 return BadRequest("Las contraseñas no coinciden.");
             }
 
-            // (convertir) el DTO a la entidad real de tu base de datos
             var nuevoUsuario = new Usuario
             {
                 Nombre = registroRequest.Nombre,
                 Correo = registroRequest.Correo,
-                Contrasena = registroRequest.Contrasena
+                Contrasena = registroRequest.Contrasena,
+                Rol = registroRequest.Rol,
+                Licencia = registroRequest.Licencia
             };
 
             var usuarioRegistrado = await _usuariosService.RegistrarUsuarioAsync(nuevoUsuario);
+
+            if (usuarioRegistrado.Rol == "Piloto" && !string.IsNullOrWhiteSpace(usuarioRegistrado.Licencia))
+            {
+                var pilotoExistente = await _pilotosService.ObtenerPilotosAsync();
+                if (!pilotoExistente.Any(p => p.Licencia == usuarioRegistrado.Licencia))
+                {
+                    await _pilotosService.CrearPilotoAsync(new Piloto
+                    {
+                        Nombre = usuarioRegistrado.Nombre,
+                        Licencia = usuarioRegistrado.Licencia
+                    });
+                }
+            }
+
             return CreatedAtAction(nameof(GetUsuario), new { id = usuarioRegistrado.Id }, usuarioRegistrado);
 
         }

@@ -19,5 +19,11 @@ namespace TechHub.Domain.Entidades
 
         [Column("Direccion")]
         public string? Direccion { get; set; }
+
+        [Column("Rol")]
+        public string Rol { get; set; } = "Pasajero";
+
+        [Column("Licencia")]
+        public string? Licencia { get; set; }
     }
 }

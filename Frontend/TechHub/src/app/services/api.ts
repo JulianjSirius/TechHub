@@ -3,11 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Login } from '../models/login';
 import { RegistroUsuario } from '../models/registrousuario';
-import { Clase } from '../models/clases'; // ✅ Agregada la importación
 import { Usuario } from '../models/usuario';
 import { Piloto } from '../models/piloto';
 import { Vuelo } from '../models/vuelo';
 import { Aeropuerto } from '../models/aeropuerto';
+import { Practica } from '../models/practica';
+import { HorasVuelo } from '../models/horas-vuelo';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ import { Aeropuerto } from '../models/aeropuerto';
 export class ApiService {
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:5297/api';
+  private apiUrl = '/api';
 
   constructor() {}
 
@@ -49,10 +50,6 @@ export class ApiService {
     return this.http.get<Usuario[]>(`${this.apiUrl}/usuarios`);
   }
 
-  getClases(): Observable<Clase[]> {
-    return this.http.get<Clase[]>(`${this.apiUrl}/clases`);
-  }
-
   getVuelos(): Observable<Vuelo[]> {
     return this.http.get<Vuelo[]>(`${this.apiUrl}/vuelos`);
   }
@@ -69,11 +66,43 @@ export class ApiService {
     return this.http.post<Vuelo>(`${this.apiUrl}/vuelos`, vuelo);
   }
 
-  agendarClase(datosReserva: { usuarioId: number; claseId: number }) {
-    return this.http.post<{ mensaje: string }>(`${this.apiUrl}/clases/agendar`, datosReserva);
-  }
-
   crearMantenimiento(datosMantenimiento: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/mantenimientos`, datosMantenimiento);
+  }
+
+  getPracticas(usuarioId: number): Observable<Practica[]> {
+    return this.http.get<Practica[]>(`${this.apiUrl}/practicas/usuario/${usuarioId}`);
+  }
+
+  crearPractica(practica: Practica): Observable<Practica> {
+    return this.http.post<Practica>(`${this.apiUrl}/practicas`, practica);
+  }
+
+  actualizarPractica(id: number, practica: Practica): Observable<Practica> {
+    return this.http.put<Practica>(`${this.apiUrl}/practicas/${id}`, practica);
+  }
+
+  eliminarPractica(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/practicas/${id}`);
+  }
+
+  getHorasVuelo(usuarioId: number): Observable<HorasVuelo[]> {
+    return this.http.get<HorasVuelo[]>(`${this.apiUrl}/horas-vuelo/usuario/${usuarioId}`);
+  }
+
+  getAllHorasVuelo(): Observable<HorasVuelo[]> {
+    return this.http.get<HorasVuelo[]>(`${this.apiUrl}/horas-vuelo`);
+  }
+
+  crearHorasVuelo(horasVuelo: HorasVuelo): Observable<HorasVuelo> {
+    return this.http.post<HorasVuelo>(`${this.apiUrl}/horas-vuelo`, horasVuelo);
+  }
+
+  eliminarHorasVuelo(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/horas-vuelo/${id}`);
+  }
+
+  seedAeropuertos(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/aeropuertos/seed`, {});
   }
 }

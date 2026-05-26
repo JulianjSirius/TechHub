@@ -41,7 +41,6 @@ export class Login {
 
     this.Service.login(credenciales).subscribe({
       next: (usuario) => {
-        console.log('Login exitoso:', usuario);
         this.auth.setUser(usuario);
         this.router.navigate(['/Dashboard']);
         this.correo.set('');

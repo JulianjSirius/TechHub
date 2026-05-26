@@ -16,6 +16,8 @@ export class Register {
   correo = signal('');
   contrasena = signal('');
   ConfirmarContrasena = signal('');
+  rol = signal('Pasajero');
+  licencia = signal('');
 
   mensaje = signal('');
   error = signal('');
@@ -38,11 +40,18 @@ export class Register {
       return;
     }
 
+    if (this.rol() === 'Piloto' && !this.licencia()) {
+      this.error.set('Ingresa tu licencia de piloto.');
+      return;
+    }
+
     const registro: RegistroUsuario = {
       nombre: this.nombre(),
       correo: this.correo(),
       contrasena: this.contrasena(),
       ConfirmarContrasena: this.ConfirmarContrasena(),
+      rol: this.rol(),
+      licencia: this.rol() === 'Piloto' ? this.licencia() : undefined,
     };
 
     this.loading.set(true);

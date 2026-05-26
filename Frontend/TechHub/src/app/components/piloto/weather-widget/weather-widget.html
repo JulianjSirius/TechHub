@@ -1,0 +1,53 @@
+<div class="weather-widget">
+  <div class="weather-header">
+    <h3>🌤️ Clima Aeronáutico</h3>
+    <div class="city-selector">
+      @for (city of cities; track city) {
+        <button class="city-btn" [class.active]="selectedCity() === city" (click)="changeCity(city)">
+          {{ city }}
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="weather-body loading">
+      <div class="skeleton weather-icon-skel"></div>
+      <div class="skeleton weather-temp-skel"></div>
+    </div>
+  }
+
+  @if (weather(); as w) {
+    <div class="weather-body">
+      <div class="weather-main">
+        <div class="weather-icon">
+          <img [src]="'https:' + w.current.condition.icon" [alt]="w.current.condition.text" />
+        </div>
+        <div class="weather-temp">{{ w.current.temp_c }}°C</div>
+        <div class="weather-condition">{{ w.current.condition.text }}</div>
+      </div>
+      <div class="weather-details">
+        <div class="detail">
+          <span class="detail-label">Viento</span>
+          <span class="detail-value">{{ w.current.wind_kph }} km/h</span>
+        </div>
+        <div class="detail">
+          <span class="detail-label">Humedad</span>
+          <span class="detail-value">{{ w.current.humidity }}%</span>
+        </div>
+        <div class="detail">
+          <span class="detail-label">Sensación</span>
+          <span class="detail-value">{{ w.current.feelslike_c }}°C</span>
+        </div>
+        <div class="detail">
+          <span class="detail-label">Visibilidad</span>
+          <span class="detail-value">{{ w.current.vis_km }} km</span>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="weather-error">{{ error() }}</div>
+  }
+</div>

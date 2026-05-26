@@ -1,0 +1,138 @@
+.weather-widget {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.weather-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.weather-header h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.city-selector {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.city-btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.city-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.city-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.weather-body {
+  padding: 1.25rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.weather-body.loading {
+  display: flex;
+  gap: 1rem;
+  padding: 2rem 1.25rem;
+}
+
+.weather-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+}
+
+.weather-icon { margin-bottom: 0.25rem; }
+.weather-icon img { width: 64px; height: 64px; }
+
+.weather-temp {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.weather-condition {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.detail-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.weather-error {
+  padding: 1rem 1.25rem;
+  color: var(--danger);
+  font-size: 0.8125rem;
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: var(--border-light);
+  border-radius: var(--radius-sm);
+  animation: pulse 1.5s infinite;
+}
+
+.weather-icon-skel {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.weather-temp-skel {
+  width: 80px;
+  height: 1.5rem;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.2; }
+}

@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TechHub.API.DateTransfer;
 using TechHub.Application.Interfaces;
 using TechHub.Domain.Entidades;
+using TechHub.Infrastructure;
 
 namespace TechHub.API.Controllers
 {
@@ -13,11 +16,13 @@ namespace TechHub.API.Controllers
     {
         private readonly IAeropuertosService _aeropuertosService;
         private readonly IPilotosService _pilotosService;
+        private readonly TechHub.Infrastructure.TechHubDbContext _context;
 
-        public AeropuertosController(IAeropuertosService aeropuertosService, IPilotosService pilotosService)
+        public AeropuertosController(IAeropuertosService aeropuertosService, IPilotosService pilotosService, TechHub.Infrastructure.TechHubDbContext context)
         {
             _aeropuertosService = aeropuertosService;
             _pilotosService = pilotosService;
+            _context = context;
         }
 
         [HttpGet]
@@ -61,6 +66,32 @@ namespace TechHub.API.Controllers
 
             var creado = await _aeropuertosService.CrearAeropuertoAsync(aeropuerto);
             return CreatedAtAction(nameof(GetAeropuerto), new { id = creado.Id }, creado);
+        }
+
+        [HttpPost("seed")]
+        public async Task<ActionResult> SeedAeropuertos()
+        {
+            var existing = await _context.Aeropuertos.CountAsync();
+            if (existing > 0)
+                return Ok(new { mensaje = $"Ya existen {existing} aeropuertos. Seed no ejecutado." });
+
+            var aeropuertos = new List<Aeropuerto>
+            {
+                new() { Nombre = "El Dorado", Ciudad = "Bogotá" },
+                new() { Nombre = "José María Córdova", Ciudad = "Medellín" },
+                new() { Nombre = "Alfonso Bonilla Aragón", Ciudad = "Cali" },
+                new() { Nombre = "Rafael Núñez", Ciudad = "Cartagena" },
+                new() { Nombre = "Ernesto Cortissoz", Ciudad = "Barranquilla" },
+                new() { Nombre = "Palonegro", Ciudad = "Bucaramanga" },
+                new() { Nombre = "Matecaña", Ciudad = "Pereira" },
+                new() { Nombre = "Gustavo Rojas Pinilla", Ciudad = "San Andrés" },
+                new() { Nombre = "Simón Bolívar", Ciudad = "Santa Marta" },
+                new() { Nombre = "Guillermo León Valencia", Ciudad = "Popayán" }
+            };
+
+            _context.Aeropuertos.AddRange(aeropuertos);
+            await _context.SaveChangesAsync();
+            return Ok(new { mensaje = $"Creados {aeropuertos.Count} aeropuertos exitosamente." });
         }
 
         [HttpPut("{id}")]

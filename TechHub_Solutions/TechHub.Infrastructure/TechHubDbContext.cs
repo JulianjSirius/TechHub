@@ -13,6 +13,8 @@ namespace TechHub.Infrastructure
         public DbSet<Avion> Aviones { get; set; }
         public DbSet<Vuelo> Vuelos { get; set; }
         public DbSet<Aeropuerto> Aeropuertos { get; set; }
+        public DbSet<Practica> Practicas { get; set; }
+        public DbSet<HorasVuelo> HorasVuelos { get; set; }
 
     }
 }

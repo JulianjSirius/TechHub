@@ -1,0 +1,57 @@
+<div class="calendar-widget">
+  <div class="calendar-header">
+    <h3>📅 Calendario</h3>
+    <div class="calendar-nav">
+      <button class="btn-icon" (click)="prevMonth()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <span class="month-label">{{ monthYear() | titlecase }}</span>
+      <button class="btn-icon" (click)="nextMonth()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <button class="btn btn-ghost btn-sm" (click)="loadEvents()" [disabled]="loading()">
+      {{ loading() ? '...' : '⟳' }}
+    </button>
+  </div>
+
+  <div class="calendar-grid">
+    @for (day of weekDays; track day) {
+      <div class="calendar-weekday">{{ day }}</div>
+    }
+    @for (day of daysInMonth(); track $index) {
+      @if (day) {
+        <button
+          class="calendar-day"
+          [class.today]="isToday(day)"
+          [class.has-event]="hasEvents(day)"
+          [class.selected]="selectedDay()?.getTime() === day.getTime()"
+          [style.--event-color]="getEventColor(day)"
+          (click)="selectDay(day)"
+        >
+          {{ day.getDate() }}
+        </button>
+      } @else {
+        <div class="calendar-day empty"></div>
+      }
+    }
+  </div>
+
+  @if (dayEvents().length > 0) {
+    <div class="day-events">
+      <h4>{{ selectedDay() | date:'fullDate':'':'es' }}</h4>
+      @for (event of dayEvents(); track event.title + event.date) {
+        <div class="event-item" [style.border-left-color]="event.color">
+          <span class="event-time">{{ event.date | date:'shortTime' }}</span>
+          <span class="event-title">{{ event.title }}</span>
+          <span class="event-type" [style.background]="event.color">{{ event.type }}</span>
+        </div>
+      }
+    </div>
+  }
+
+  <div class="calendar-legend">
+    <span class="legend-item"><span class="dot" style="background:#f59e0b"></span> Vuelos</span>
+    <span class="legend-item"><span class="dot" style="background:#3b82f6"></span> Prácticas</span>
+  </div>
+</div>

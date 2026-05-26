@@ -1,0 +1,49 @@
+<div style="max-width:600px;">
+  <div class="page-header">
+    <div>
+      <span class="badge badge-accent">Pilotos</span>
+      <h1 style="margin-top:0.5rem;">Registro de pilotos</h1>
+      <p>Agrega nuevos pilotos al sistema.</p>
+    </div>
+  </div>
+
+  <div class="card" style="padding:1.5rem;">
+    <form (ngSubmit)="registrar()" #form="ngForm">
+      <div class="field">
+        <label for="nombre">Nombre completo</label>
+        <input
+          id="nombre"
+          name="nombre"
+          type="text"
+          [ngModel]="nombre()"
+          (ngModelChange)="nombre.set($event)"
+          required
+          placeholder="Nombre del piloto"
+        />
+      </div>
+      <div class="field" style="margin-top:1rem;">
+        <label for="licencia">Licencia</label>
+        <input
+          id="licencia"
+          name="licencia"
+          type="text"
+          [ngModel]="licencia()"
+          (ngModelChange)="licencia.set($event)"
+          required
+          placeholder="LIC-0000"
+        />
+      </div>
+
+      @if (error()) {
+        <div class="alert alert-error" style="margin-top:1rem;">{{ error() }}</div>
+      }
+      @if (mensaje()) {
+        <div class="alert alert-success" style="margin-top:1rem;">{{ mensaje() }}</div>
+      }
+
+      <button class="btn btn-primary" type="submit" style="margin-top:1.25rem;" [disabled]="form.invalid || loading()">
+        {{ loading() ? 'Guardando...' : 'Registrar piloto' }}
+      </button>
+    </form>
+  </div>
+</div>
