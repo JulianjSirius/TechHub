@@ -1,11 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Producto } from '../models/producto';
 import { Login } from '../models/login';
 import { RegistroUsuario } from '../models/registrousuario';
 import { Clase } from '../models/clases'; // ✅ Agregada la importación
 import { Usuario } from '../models/usuario';
+import { Piloto } from '../models/piloto';
+import { Vuelo } from '../models/vuelo';
+import { Aeropuerto } from '../models/aeropuerto';
 
 @Injectable({
   providedIn: 'root',
@@ -47,12 +49,24 @@ export class ApiService {
     return this.http.get<Usuario[]>(`${this.apiUrl}/usuarios`);
   }
 
-  getProductos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${this.apiUrl}/productos`);
-  }
-
   getClases(): Observable<Clase[]> {
     return this.http.get<Clase[]>(`${this.apiUrl}/clases`);
+  }
+
+  getVuelos(): Observable<Vuelo[]> {
+    return this.http.get<Vuelo[]>(`${this.apiUrl}/vuelos`);
+  }
+
+  getAeropuertos(): Observable<Aeropuerto[]> {
+    return this.http.get<Aeropuerto[]>(`${this.apiUrl}/aeropuertos`);
+  }
+
+  crearPiloto(piloto: Pick<Piloto, 'nombre' | 'licencia'>): Observable<Piloto> {
+    return this.http.post<Piloto>(`${this.apiUrl}/pilotos`, piloto);
+  }
+
+  crearVuelo(vuelo: Pick<Vuelo, 'origen' | 'destino' | 'fechaSalida'>): Observable<Vuelo> {
+    return this.http.post<Vuelo>(`${this.apiUrl}/vuelos`, vuelo);
   }
 
   agendarClase(datosReserva: { usuarioId: number; claseId: number }) {

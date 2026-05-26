@@ -22,6 +22,51 @@ namespace TechHub.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("TechHub.Domain.Entidades.Aeropuerto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Ciudad")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("Ciudad");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("Nombre");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Aeropuertos");
+                });
+
+            modelBuilder.Entity("TechHub.Domain.Entidades.Avion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Capacidad")
+                        .HasColumnType("integer")
+                        .HasColumnName("Capacidad");
+
+                    b.Property<string>("Modelo")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("Modelo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Aviones");
+                });
+
             modelBuilder.Entity("TechHub.Domain.Entidades.Clase", b =>
                 {
                     b.Property<int>("Id")
@@ -89,6 +134,29 @@ namespace TechHub.Infrastructure.Migrations
                     b.ToTable("Mantenimientos");
                 });
 
+            modelBuilder.Entity("TechHub.Domain.Entidades.Piloto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Licencia")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("Licencia");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("Nombre");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pilotos");
+                });
+
             modelBuilder.Entity("TechHub.Domain.Entidades.Producto", b =>
                 {
                     b.Property<int>("Id")
@@ -145,10 +213,6 @@ namespace TechHub.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClaseId");
-
-                    b.HasIndex("UsuarioId");
-
                     b.ToTable("Reservas");
                 });
 
@@ -184,41 +248,49 @@ namespace TechHub.Infrastructure.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("TechHub.Domain.Entidades.Vuelo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Destino")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("Destino");
+
+                    b.Property<DateTime>("FechaSalida")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("FechaSalida");
+
+                    b.Property<string>("Origen")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("Origen");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vuelos");
+                });
+
             modelBuilder.Entity("TechHub.Domain.Entidades.Mantenimiento", b =>
-            {
-                b.HasOne("TechHub.Domain.Entidades.Producto", "Producto")
+                {
+                    b.HasOne("TechHub.Domain.Entidades.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("ProductoId");
 
-                b.HasOne("TechHub.Domain.Entidades.Usuario", "Usuario")
-                    .WithMany()
-                    .HasForeignKey("UsuarioId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.Navigation("Producto");
-
-                b.Navigation("Usuario");
-            });
-
-            modelBuilder.Entity("TechHub.Domain.Entidades.Reserva", b =>
-            {
-                b.HasOne("TechHub.Domain.Entidades.Clase", "Clase")
+                    b.HasOne("TechHub.Domain.Entidades.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("ClaseId")
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                b.HasOne("TechHub.Domain.Entidades.Usuario", "Usuario")
-                    .WithMany()
-                    .HasForeignKey("UsuarioId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                    b.Navigation("Producto");
 
-                b.Navigation("Clase");
-
-                b.Navigation("Usuario");
-            });
+                    b.Navigation("Usuario");
+                });
 #pragma warning restore 612, 618
         }
     }

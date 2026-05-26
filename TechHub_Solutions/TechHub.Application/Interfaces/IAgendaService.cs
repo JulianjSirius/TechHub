@@ -9,6 +9,6 @@ namespace TechHub.Application.Interfaces
         Task<IEnumerable<Clase>> ObtenerClasesAsync();
 
 
-        Task<bool> ReservarClaseAsync(int usuarioId, int claseId);
+        Task<bool> ReservarClaseAsync(int usuarioId, int claseId, int vueloId);
     }
 }

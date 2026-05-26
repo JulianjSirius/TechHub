@@ -3,11 +3,10 @@ import { CurrencyPipe } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ApiService } from './services/api'; // Importamos el servicio
 import { AuthService } from './services/auth';
-import { CartService } from './services/cart';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, CurrencyPipe],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive,],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
@@ -15,7 +14,6 @@ export class App implements OnInit {
   protected readonly title = signal('TechHub');
   protected readonly menuOpen = signal(false);
   protected readonly auth = inject(AuthService);
-  protected readonly cart = inject(CartService);
   protected readonly userInitials = computed(() => {
     const name = this.auth.userName().trim();
     if (!name) return 'TH';

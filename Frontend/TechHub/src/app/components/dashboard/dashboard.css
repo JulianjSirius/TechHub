@@ -31,6 +31,29 @@
   gap: 1.6rem;
 }
 
+.dashboard-section {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+}
+
 .dashboard-card {
   background: var(--surface-elev);
   border-radius: var(--radius-lg);

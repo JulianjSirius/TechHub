@@ -15,7 +15,7 @@ export class Register {
   nombre = signal('');
   correo = signal('');
   contrasena = signal('');
-  confirmContrasena = signal('');
+  ConfirmarContrasena = signal('');
 
   mensaje = signal('');
   error = signal('');
@@ -28,12 +28,12 @@ export class Register {
     this.mensaje.set('');
     this.error.set('');
 
-    if (!this.nombre() || !this.correo() || !this.contrasena() || !this.confirmContrasena()) {
+    if (!this.nombre() || !this.correo() || !this.contrasena() || !this.ConfirmarContrasena()) {
       this.error.set('Completa todos los campos.');
       return;
     }
 
-    if (this.contrasena() !== this.confirmContrasena()) {
+    if (this.contrasena() !== this.ConfirmarContrasena()) {
       this.error.set('Las contraseñas no coinciden.');
       return;
     }
@@ -42,7 +42,7 @@ export class Register {
       nombre: this.nombre(),
       correo: this.correo(),
       contrasena: this.contrasena(),
-      confirmContrasena: this.confirmContrasena(),
+      ConfirmarContrasena: this.ConfirmarContrasena(),
     };
 
     this.loading.set(true);

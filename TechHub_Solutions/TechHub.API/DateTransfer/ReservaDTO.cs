@@ -4,5 +4,6 @@
     {
         public int UsuarioId { get; set; }
         public int ClaseId { get; set; }
+        public int VueloId { get; set; }
     }
 }

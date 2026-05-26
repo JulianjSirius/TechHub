@@ -32,6 +32,44 @@
   </div>
 
   @if (auth.isLoggedIn()) {
+    <section class="dashboard-section">
+      <div class="section-heading">
+        <span class="pill">Operaciones de vuelo</span>
+        <h2>Gestion de vuelos y aeropuertos</h2>
+        <p>Administra rutas, pilotos y terminales disponibles.</p>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="dashboard-card">
+          <div class="card-icon">✈️</div>
+          <h2>Vuelos disponibles</h2>
+          <p>Consulta las salidas programadas.</p>
+          <a routerLink="/Vuelos" class="btn-card">Ver Vuelos</a>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-icon">🛬</div>
+          <h2>Aeropuertos</h2>
+          <p>Explora las terminales habilitadas.</p>
+          <a routerLink="/Aeropuertos" class="btn-card">Ver Aeropuertos</a>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-icon">🧑‍✈️</div>
+          <h2>Registrar Piloto</h2>
+          <p>Agrega nuevos pilotos al sistema.</p>
+          <a routerLink="/Pilotos" class="btn-card">Registrar Piloto</a>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-icon">🛫</div>
+          <h2>Registrar Vuelo</h2>
+          <p>Crea nuevas rutas de vuelo.</p>
+          <a routerLink="/RegistroVuelo" class="btn-card">Registrar Vuelo</a>
+        </div>
+      </div>
+    </section>
+
     <section class="logic-section">
       <div class="logic-header">
         <span class="pill">Como operamos</span>

@@ -28,9 +28,11 @@ builder.Services.AddDbContext<TechHubDbContext>(options =>
     options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<IAgendaService, AgendaService>();
-builder.Services.AddScoped<IVentasService, VentasService>();
 builder.Services.AddScoped<IUsuariosService, UsuariosService>();
-builder.Services.AddScoped<IMantenimientoService, MantenimientoService>();
+builder.Services.AddScoped<IAeropuertosService, AeropuertosService>();
+builder.Services.AddScoped<IAvionesService, AvionesService>();
+builder.Services.AddScoped<IPilotosService, PilotosService>();
+builder.Services.AddScoped<IVuelosService, VuelosService>();
 
 
 var app = builder.Build();

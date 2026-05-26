@@ -39,8 +39,13 @@ namespace TechHub.API.Controllers
         [HttpPost("agendar")]
         public async Task<ActionResult> AgendarClase([FromBody] NuevaReservaDTO reservaDto)
         {
-            // Le pasamos la responsabilidad a la Capa Lógica (BLL)
-            bool exito = await _agendaService.ReservarClaseAsync(reservaDto.UsuarioId, reservaDto.ClaseId);
+            if (reservaDto == null || reservaDto.UsuarioId <= 0 || reservaDto.ClaseId <= 0 || reservaDto.VueloId <= 0)
+            {
+                return BadRequest(new { mensaje = "Datos de reserva invalidos." });
+            }
+
+            // Le pasamos la responsabilidad a la Capa Logica (BLL)
+            bool exito = await _agendaService.ReservarClaseAsync(reservaDto.UsuarioId, reservaDto.ClaseId, reservaDto.VueloId);
 
             if (!exito)
             {

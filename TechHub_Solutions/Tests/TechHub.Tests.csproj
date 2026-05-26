@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TechHub.API\TechHub.API.csproj" />
     <ProjectReference Include="..\TechHub.Application\TechHub.Application.csproj" />
     <ProjectReference Include="..\TechHub.Infrastructure\TechHub.Infrastructure.csproj" />
     <ProjectReference Include="..\TechHub.Domain\TechHub.Domain.csproj" />

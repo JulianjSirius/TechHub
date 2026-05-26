@@ -19,29 +19,42 @@ namespace TechHub.Application.Servicios
             return await _context.Clases.ToListAsync();
         }
 
-        public async Task<bool> ReservarClaseAsync(int usuarioId, int claseId)
+        public async Task<bool> ReservarClaseAsync(int usuarioId, int claseId, int vueloId)
         {
-            // Busca la clase en la DB
-            var clase = await _context.Clases.FindAsync(claseId);
-
-            // Validación: ¿Existe la clase y tiene cupos?
-            if (clase == null || clase.CuposDisponibles <= 0)
+            var usuarioExiste = await _context.Usuarios.AnyAsync(u => u.Id == usuarioId);
+            if (!usuarioExiste)
             {
                 return false;
             }
 
-            // Crear la entidad de reserva
+            var clase = await _context.Clases.FindAsync(claseId);
+            if (clase == null)
+            {
+                return false;
+            }
+
+            var vuelo = await _context.Vuelos.FindAsync(vueloId);
+            if (vuelo == null || vuelo.CuposDisponibles <= 0)
+            {
+                return false;
+            }
+
+            var reservaExiste = await _context.Reservas.AnyAsync(r => r.UsuarioId == usuarioId && r.VueloId == vueloId);
+            if (reservaExiste)
+            {
+                return false;
+            }
+
             var nuevaReserva = new Reserva
             {
                 UsuarioId = usuarioId,
                 ClaseId = claseId,
+                VueloId = vueloId,
                 FechaReserva = DateTime.UtcNow
             };
 
-            //  Restar un cupo disponible
-            clase.CuposDisponibles -= 1;
+            vuelo.CuposDisponibles -= 1;
 
-            // Guardamos todo en una sola transacción
             _context.Reservas.Add(nuevaReserva);
             await _context.SaveChangesAsync();
 

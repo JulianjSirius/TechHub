@@ -1,0 +1,49 @@
+<div class="page-shell">
+  <div class="page-header">
+    <div>
+      <span class="pill">Vuelos</span>
+      <h1>Agenda de vuelos</h1>
+      <p>Consulta salidas programadas y planifica rutas para tus clientes.</p>
+    </div>
+    <button class="btn btn-ghost" type="button" (click)="cargarVuelos()" [disabled]="loading()">
+      {{ loading() ? 'Actualizando...' : 'Actualizar' }}
+    </button>
+  </div>
+
+  @if (error()) {
+    <div class="alert error">{{ error() }}</div>
+  }
+
+  @if (loading()) {
+    <div class="vuelos-grid" aria-hidden="true">
+      @for (item of skeletons; track $index) {
+        <div class="vuelo-card skeleton"></div>
+      }
+    </div>
+  }
+
+  @if (!loading() && vuelos().length === 0) {
+    <div class="empty-state">
+      <span class="empty-icon">✈️</span>
+      <p>No hay vuelos registrados por ahora.</p>
+    </div>
+  }
+
+  @if (!loading() && vuelos().length > 0) {
+    <div class="vuelos-grid">
+      @for (vuelo of vuelos(); track vuelo.id ?? vuelo.origen + vuelo.destino + vuelo.fechaSalida) {
+        <article class="vuelo-card">
+          <div class="vuelo-route">
+            <span class="chip">{{ vuelo.origen }}</span>
+            <span class="arrow">→</span>
+            <span class="chip">{{ vuelo.destino }}</span>
+          </div>
+          <div class="vuelo-meta">
+            <span>Salida</span>
+            <strong>{{ vuelo.fechaSalida | date: 'medium' }}</strong>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</div>

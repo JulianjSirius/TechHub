@@ -41,22 +41,40 @@ public class UnitTest1
     public async Task AgendaService_ReservarClase_DescuentaCupo()
     {
         await using var db = CreateInMemoryDbContext();
+        db.Usuarios.Add(new Usuario
+        {
+            Nombre = "Ana",
+            Correo = "ana@demo.com",
+            Contrasena = "123"
+        });
         db.Clases.Add(new Clase
         {
             Nombre = "Yoga",
             CuposMaximos = 2,
             CuposDisponibles = 1
         });
+        db.Vuelos.Add(new Vuelo
+        {
+            Origen = "BOG",
+            Destino = "MDE",
+            FechaSalida = DateTime.UtcNow.AddDays(1),
+            CuposMaximos = 3,
+            CuposDisponibles = 1
+        });
         await db.SaveChangesAsync();
 
         var service = new AgendaService(db);
+        var usuarioId = db.Usuarios.Single().Id;
         var claseId = db.Clases.Single().Id;
-        var reservado = await service.ReservarClaseAsync(usuarioId: 1, claseId: claseId);
+        var vueloId = db.Vuelos.Single().Id;
+        var reservado = await service.ReservarClaseAsync(usuarioId: usuarioId, claseId: claseId, vueloId: vueloId);
 
         var claseActualizada = await db.Clases.FindAsync(claseId);
+        var vueloActualizado = await db.Vuelos.FindAsync(vueloId);
 
         Assert.True(reservado);
         Assert.NotNull(claseActualizada);
-        Assert.Equal(0, claseActualizada!.CuposDisponibles);
+        Assert.NotNull(vueloActualizado);
+        Assert.Equal(0, vueloActualizado!.CuposDisponibles);
     }
 }
