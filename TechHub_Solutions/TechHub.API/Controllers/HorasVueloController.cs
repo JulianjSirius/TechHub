@@ -9,7 +9,7 @@ using TechHub.Domain.Entidades;
 namespace TechHub.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/horas-vuelo")]
     public class HorasVueloController : ControllerBase
     {
         private readonly IHorasVueloService _horasVueloService;
@@ -25,9 +25,14 @@ namespace TechHub.API.Controllers
             var horas = await _horasVueloService.ObtenerPorUsuarioAsync(usuarioId);
             var dtos = horas.Select(h => new HorasVueloDTO
             {
-                Id = h.Id, UsuarioId = h.UsuarioId, Fecha = h.Fecha,
-                Horas = h.Horas, TipoVuelo = h.TipoVuelo,
-                Origen = h.Origen, Destino = h.Destino, Notas = h.Notas
+                Id = h.Id,
+                UsuarioId = h.UsuarioId,
+                Fecha = h.Fecha,
+                Horas = h.Horas,
+                TipoVuelo = h.TipoVuelo,
+                Origen = h.Origen,
+                Destino = h.Destino,
+                Notas = h.Notas
             }).ToList();
             return Ok(dtos);
         }
@@ -38,9 +43,14 @@ namespace TechHub.API.Controllers
             var horas = await _horasVueloService.ObtenerTodasAsync();
             var dtos = horas.Select(h => new HorasVueloDTO
             {
-                Id = h.Id, UsuarioId = h.UsuarioId, Fecha = h.Fecha,
-                Horas = h.Horas, TipoVuelo = h.TipoVuelo,
-                Origen = h.Origen, Destino = h.Destino, Notas = h.Notas
+                Id = h.Id,
+                UsuarioId = h.UsuarioId,
+                Fecha = h.Fecha,
+                Horas = h.Horas,
+                TipoVuelo = h.TipoVuelo,
+                Origen = h.Origen,
+                Destino = h.Destino,
+                Notas = h.Notas
             }).ToList();
             return Ok(dtos);
         }

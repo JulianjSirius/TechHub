@@ -97,7 +97,7 @@ namespace TechHub.Infrastructure.Migrations
                     b.ToTable("Clases");
                 });
 
-            modelBuilder.Entity("TechHub.Domain.Entidades.Mantenimiento", b =>
+            modelBuilder.Entity("TechHub.Domain.Entidades.HorasVuelo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,33 +105,38 @@ namespace TechHub.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<string>("Destino")
+                        .HasColumnType("text")
+                        .HasColumnName("Destino");
 
                     b.Property<DateTime>("Fecha")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("Fecha");
+
+                    b.Property<decimal>("Horas")
+                        .HasColumnType("numeric")
+                        .HasColumnName("Horas");
 
                     b.Property<string>("Notas")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("Notas");
 
-                    b.Property<int?>("ProductoId")
-                        .HasColumnType("integer");
+                    b.Property<string>("Origen")
+                        .HasColumnType("text")
+                        .HasColumnName("Origen");
 
-                    b.Property<string>("Tipo")
+                    b.Property<string>("TipoVuelo")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("TipoVuelo");
 
                     b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("UsuarioId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductoId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("Mantenimientos");
+                    b.ToTable("HorasVuelos");
                 });
 
             modelBuilder.Entity("TechHub.Domain.Entidades.Piloto", b =>
@@ -157,7 +162,7 @@ namespace TechHub.Infrastructure.Migrations
                     b.ToTable("Pilotos");
                 });
 
-            modelBuilder.Entity("TechHub.Domain.Entidades.Producto", b =>
+            modelBuilder.Entity("TechHub.Domain.Entidades.Practica", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -165,30 +170,38 @@ namespace TechHub.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Categoria")
-                        .HasColumnType("text")
-                        .HasColumnName("categoria");
+                    b.Property<bool>("Completada")
+                        .HasColumnType("boolean")
+                        .HasColumnName("Completada");
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("text")
-                        .HasColumnName("descripcion");
+                        .HasColumnName("Descripcion");
 
-                    b.Property<string>("Nombre")
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("Fecha");
+
+                    b.Property<decimal>("Horas")
+                        .HasColumnType("numeric")
+                        .HasColumnName("Horas");
+
+                    b.Property<string>("Instructor")
+                        .HasColumnType("text")
+                        .HasColumnName("Instructor");
+
+                    b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("nombre");
+                        .HasColumnName("Tipo");
 
-                    b.Property<decimal>("Precio")
-                        .HasColumnType("numeric")
-                        .HasColumnName("precio");
-
-                    b.Property<int>("Stock")
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("integer")
-                        .HasColumnName("stock");
+                        .HasColumnName("UsuarioId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Productos");
+                    b.ToTable("Practicas");
                 });
 
             modelBuilder.Entity("TechHub.Domain.Entidades.Reserva", b =>
@@ -210,6 +223,10 @@ namespace TechHub.Infrastructure.Migrations
                     b.Property<int>("UsuarioId")
                         .HasColumnType("integer")
                         .HasColumnName("UsuarioId");
+
+                    b.Property<int>("VueloId")
+                        .HasColumnType("integer")
+                        .HasColumnName("VueloId");
 
                     b.HasKey("Id");
 
@@ -238,10 +255,19 @@ namespace TechHub.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasColumnName("Direccion");
 
+                    b.Property<string>("Licencia")
+                        .HasColumnType("text")
+                        .HasColumnName("Licencia");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("Nombre");
+
+                    b.Property<string>("Rol")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("Rol");
 
                     b.HasKey("Id");
 
@@ -255,6 +281,14 @@ namespace TechHub.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CuposDisponibles")
+                        .HasColumnType("integer")
+                        .HasColumnName("CuposDisponibles");
+
+                    b.Property<int>("CuposMaximos")
+                        .HasColumnType("integer")
+                        .HasColumnName("CuposMaximos");
 
                     b.Property<string>("Destino")
                         .IsRequired()
@@ -273,23 +307,6 @@ namespace TechHub.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vuelos");
-                });
-
-            modelBuilder.Entity("TechHub.Domain.Entidades.Mantenimiento", b =>
-                {
-                    b.HasOne("TechHub.Domain.Entidades.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId");
-
-                    b.HasOne("TechHub.Domain.Entidades.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Producto");
-
-                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }

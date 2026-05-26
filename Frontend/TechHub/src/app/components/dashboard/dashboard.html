@@ -1,11 +1,15 @@
-<div>
+<div class="dashboard">
   <div class="page-header">
     <div>
       <span class="badge badge-accent">Dashboard</span>
-      <h1 style="margin-top:0.5rem;">Bienvenido, {{ auth.userName() }}</h1>
-      <p style="display:flex;align-items:center;gap:0.5rem;margin-top:0.25rem;">
+      <h1 class="dashboard-title">Bienvenido, {{ auth.userName() }}</h1>
+      <p class="role-row">
         Rol:
-        <span class="badge" [class.badge-accent]="auth.isPiloto()" [class.badge-primary]="auth.isPasajero()">
+        <span
+          class="badge"
+          [class.badge-accent]="auth.isPiloto()"
+          [class.badge-primary]="auth.isPasajero()"
+        >
           {{ auth.isPiloto() ? 'Piloto' : 'Pasajero' }}
         </span>
       </p>
@@ -16,114 +20,244 @@
   </div>
 
   @if (status()) {
-    <div class="alert" [class.alert-success]="!status().includes('Error')" [class.alert-error]="status().includes('Error')" style="margin-bottom:1.5rem;">
+    <div
+      class="alert dashboard-alert"
+      [class.alert-success]="!status().includes('Error')"
+      [class.alert-error]="status().includes('Error')"
+    >
       {{ status() }}
     </div>
   }
 
   @if (auth.isPasajero()) {
-    <h2 style="margin-bottom:1rem;font-size:1.1rem;color:var(--text-secondary);">Panel de Pasajero</h2>
+    <h2 class="section-title">Panel de Pasajero</h2>
     <div class="grid-cards">
-      <div class="card card-hover" style="padding:1.5rem;">
-        <div style="width:40px;height:40px;border-radius:var(--radius);background:var(--accent-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>
+      <div class="card card-hover feature-card">
+        <div class="feature-icon accent">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 2 11 13" />
+            <path d="M22 2 15 22l-4-9-9-4Z" />
+          </svg>
         </div>
-        <h3 style="margin-bottom:0.25rem;">Vuelos</h3>
-        <p style="font-size:0.875rem;margin-bottom:1rem;">Consulta la agenda de vuelos programados.</p>
+        <h3 class="feature-title">Vuelos</h3>
+        <p class="feature-desc">Consulta la agenda de vuelos programados.</p>
         <a routerLink="/Vuelos" class="btn btn-primary btn-sm">Ver Vuelos</a>
       </div>
 
-      <div class="card card-hover" style="padding:1.5rem;">
-        <div style="width:40px;height:40px;border-radius:var(--radius);background:var(--primary-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+      <div class="card card-hover feature-card">
+        <div class="feature-icon primary">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+            <path d="M2 12h20" />
+          </svg>
         </div>
-        <h3 style="margin-bottom:0.25rem;">Aeropuertos</h3>
-        <p style="font-size:0.875rem;margin-bottom:1rem;">Terminales habilitadas para operaciones.</p>
+        <h3 class="feature-title">Aeropuertos</h3>
+        <p class="feature-desc">Terminales habilitadas para operaciones.</p>
         <a routerLink="/Aeropuertos" class="btn btn-secondary btn-sm">Ver Aeropuertos</a>
       </div>
 
-      <div class="card card-hover" style="padding:1.5rem;">
-        <div style="width:40px;height:40px;border-radius:var(--radius);background:var(--success-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+      <div class="card card-hover feature-card">
+        <div class="feature-icon success">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
+            <rect x="9" y="3" width="6" height="4" rx="1" />
+            <path d="M9 14l2 2 4-4" />
+          </svg>
         </div>
-        <h3 style="margin-bottom:0.25rem;">Mis Prácticas</h3>
-        <p style="font-size:0.875rem;margin-bottom:1rem;">Registra y da seguimiento a tus prácticas.</p>
-        <a routerLink="/Practicas" class="btn btn-sm" style="background:var(--success);color:#fff;border-color:var(--success);">Ver Prácticas</a>
+        <h3 class="feature-title">Mis Prácticas</h3>
+        <p class="feature-desc">Registra y da seguimiento a tus prácticas.</p>
+        <a routerLink="/Practicas" class="btn btn-success btn-sm">Ver Prácticas</a>
       </div>
 
-      <div class="card card-hover" style="padding:1.5rem;">
-        <div style="width:40px;height:40px;border-radius:var(--radius);background:var(--primary-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div class="card card-hover feature-card">
+        <div class="feature-icon primary">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
         </div>
-        <h3 style="margin-bottom:0.25rem;">Guía de uso</h3>
-        <p style="font-size:0.875rem;margin-bottom:1rem;">Aprende cómo funciona la plataforma.</p>
+        <h3 class="feature-title">Guía de uso</h3>
+        <p class="feature-desc">Aprende cómo funciona la plataforma.</p>
         <a routerLink="/guia-usuario" class="btn btn-secondary btn-sm">Ver Guía</a>
       </div>
     </div>
   }
 
   @if (auth.isPiloto()) {
-    <h2 style="margin-bottom:1rem;font-size:1.1rem;color:var(--text-secondary);">Panel de Piloto</h2>
+    <h2 class="section-title">Panel de Piloto</h2>
     <div class="grid-cards">
-      <div class="card card-hover" style="padding:1.5rem;">
-        <div style="width:40px;height:40px;border-radius:var(--radius);background:var(--accent-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>
+      <div class="card card-hover feature-card">
+        <div class="feature-icon accent">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 2 11 13" />
+            <path d="M22 2 15 22l-4-9-9-4Z" />
+          </svg>
         </div>
-        <h3 style="margin-bottom:0.25rem;">Vuelos</h3>
-        <p style="font-size:0.875rem;margin-bottom:1rem;">Consulta la agenda de vuelos programados.</p>
+        <h3 class="feature-title">Vuelos</h3>
+        <p class="feature-desc">Consulta la agenda de vuelos programados.</p>
         <a routerLink="/Vuelos" class="btn btn-primary btn-sm">Ver Vuelos</a>
       </div>
 
-      <div class="card card-hover" style="padding:1.5rem;">
-        <div style="width:40px;height:40px;border-radius:var(--radius);background:var(--primary-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+      <div class="card card-hover feature-card">
+        <div class="feature-icon primary">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+            <path d="M2 12h20" />
+          </svg>
         </div>
-        <h3 style="margin-bottom:0.25rem;">Aeropuertos</h3>
-        <p style="font-size:0.875rem;margin-bottom:1rem;">Terminales habilitadas para operaciones.</p>
+        <h3 class="feature-title">Aeropuertos</h3>
+        <p class="feature-desc">Terminales habilitadas para operaciones.</p>
         <a routerLink="/Aeropuertos" class="btn btn-secondary btn-sm">Ver Aeropuertos</a>
       </div>
 
-      <div class="card card-hover" style="padding:1.5rem;">
-        <div style="width:40px;height:40px;border-radius:var(--radius);background:var(--success-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div class="card card-hover feature-card">
+        <div class="feature-icon success">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
         </div>
-        <h3 style="margin-bottom:0.25rem;">Registrar Piloto</h3>
-        <p style="font-size:0.875rem;margin-bottom:1rem;">Agrega nuevos pilotos a la base.</p>
-        <a routerLink="/Pilotos" class="btn btn-sm" style="background:var(--success);color:#fff;border-color:var(--success);">Registrar Piloto</a>
+        <h3 class="feature-title">Registrar Piloto</h3>
+        <p class="feature-desc">Agrega nuevos pilotos a la base.</p>
+        <a routerLink="/Pilotos" class="btn btn-success btn-sm">Registrar Piloto</a>
       </div>
 
-      <div class="card card-hover" style="padding:1.5rem;">
-        <div style="width:40px;height:40px;border-radius:var(--radius);background:var(--accent-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <div class="card card-hover feature-card">
+        <div class="feature-icon accent">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
         </div>
-        <h3 style="margin-bottom:0.25rem;">Nuevo Vuelo</h3>
-        <p style="font-size:0.875rem;margin-bottom:1rem;">Crea y programa nuevas rutas.</p>
+        <h3 class="feature-title">Nuevo Vuelo</h3>
+        <p class="feature-desc">Crea y programa nuevas rutas.</p>
         <a routerLink="/RegistroVuelo" class="btn btn-primary btn-sm">Registrar Vuelo</a>
       </div>
 
-      <div class="card card-hover" style="padding:1.5rem;">
-        <div style="width:40px;height:40px;border-radius:var(--radius);background:var(--accent-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <div class="card card-hover feature-card">
+        <div class="feature-icon accent">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          </svg>
         </div>
-        <h3 style="margin-bottom:0.25rem;">Horas de Vuelo</h3>
-        <p style="font-size:0.875rem;margin-bottom:1rem;">Registra horas acumuladas para tu licencia.</p>
+        <h3 class="feature-title">Horas de Vuelo</h3>
+        <p class="feature-desc">Registra horas acumuladas para tu licencia.</p>
         <a routerLink="/HorasVuelo" class="btn btn-primary btn-sm">Registrar Horas</a>
       </div>
 
-      <div class="card card-hover" style="padding:1.5rem;">
-        <div style="width:40px;height:40px;border-radius:var(--radius);background:var(--primary-bg);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div class="card card-hover feature-card">
+        <div class="feature-icon primary">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
         </div>
-        <h3 style="margin-bottom:0.25rem;">Guía de uso</h3>
-        <p style="font-size:0.875rem;margin-bottom:1rem;">Aprende cómo funciona la plataforma.</p>
+        <h3 class="feature-title">Guía de uso</h3>
+        <p class="feature-desc">Aprende cómo funciona la plataforma.</p>
         <a routerLink="/guia-usuario" class="btn btn-secondary btn-sm">Ver Guía</a>
       </div>
     </div>
   }
 
   @if (auth.isLoggedIn()) {
-    <div class="data-section" style="margin-top:2rem;">
-      <h2 style="margin-bottom:1rem;font-size:1.1rem;color:var(--text-secondary);">Mis Registros</h2>
+    <div class="data-section">
+      <h2 class="section-title">Mis Registros</h2>
 
       @if (dataLoading()) {
         <div class="loading-state">Cargando datos...</div>
@@ -147,13 +281,26 @@
               <div class="data-table-wrap">
                 <table class="data-table">
                   <thead>
-                    <tr><th>Fecha</th><th>Tipo</th><th>Horas</th><th>Instructor</th><th>Estado</th></tr>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Tipo</th>
+                      <th>Horas</th>
+                      <th>Instructor</th>
+                      <th>Estado</th>
+                    </tr>
                   </thead>
                   <tbody>
                     @for (p of practicas().slice(0, 5); track p.id) {
                       <tr>
-                        <td>{{ p.fecha | date:'dd/MM/yyyy' }}</td>
-                        <td><span class="badge badge-sm" [class.badge-primary]="p.tipo === 'Teorica'" [class.badge-accent]="p.tipo === 'Practica'">{{ p.tipo }}</span></td>
+                        <td>{{ p.fecha | date: 'dd/MM/yyyy' }}</td>
+                        <td>
+                          <span
+                            class="badge badge-sm"
+                            [class.badge-primary]="p.tipo === 'Teorica'"
+                            [class.badge-accent]="p.tipo === 'Practica'"
+                            >{{ p.tipo }}</span
+                          >
+                        </td>
                         <td>{{ p.horas }}h</td>
                         <td>{{ p.instructor || '-' }}</td>
                         <td>{{ p.completada ? '✅' : '⬜' }}</td>
@@ -183,13 +330,21 @@
               <div class="data-table-wrap">
                 <table class="data-table">
                   <thead>
-                    <tr><th>Fecha</th><th>Tipo</th><th>Horas</th><th>Origen</th><th>Destino</th></tr>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Tipo</th>
+                      <th>Horas</th>
+                      <th>Origen</th>
+                      <th>Destino</th>
+                    </tr>
                   </thead>
                   <tbody>
                     @for (h of horasVuelo().slice(0, 5); track h.id) {
                       <tr>
-                        <td>{{ h.fecha | date:'dd/MM/yyyy' }}</td>
-                        <td><span class="badge badge-sm badge-accent">{{ h.tipoVuelo }}</span></td>
+                        <td>{{ h.fecha | date: 'dd/MM/yyyy' }}</td>
+                        <td>
+                          <span class="badge badge-sm badge-accent">{{ h.tipoVuelo }}</span>
+                        </td>
                         <td>{{ h.horas }}h</td>
                         <td>{{ h.origen || '-' }}</td>
                         <td>{{ h.destino || '-' }}</td>
@@ -200,7 +355,9 @@
               </div>
             }
             <div class="data-card-footer">
-              <a routerLink="/HorasVuelo" class="btn btn-primary btn-sm">Ver todas las horas de vuelo</a>
+              <a routerLink="/HorasVuelo" class="btn btn-primary btn-sm"
+                >Ver todas las horas de vuelo</a
+              >
             </div>
           </div>
         </div>
@@ -208,12 +365,9 @@
     </div>
   }
 
-  <div class="widgets-section" style="margin-top:2rem;">
-    <h2 style="margin-bottom:1rem;font-size:1.1rem;color:var(--text-secondary);">Widgets</h2>
+  <div class="widgets-section">
+    <h2 class="section-title">Widgets</h2>
     <div class="widgets-grid">
-      <div class="widget-card">
-        <app-weather-widget />
-      </div>
       <div class="widget-card">
         <app-calendar />
       </div>

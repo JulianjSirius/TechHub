@@ -32,7 +32,7 @@ const pasajeroGuard = () => {
 };
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'Login', pathMatch: 'full' },
   { path: 'Login', component: Login },
   { path: 'Registro', component: Register },
   { path: 'guia-usuario', component: GuiaUsuario },

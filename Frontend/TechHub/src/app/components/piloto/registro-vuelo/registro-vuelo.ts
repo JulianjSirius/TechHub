@@ -1,6 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../services/api';
+// 1. IMPORTANTE: Asegúrate de que la ruta a tu AuthService sea la correcta
+import { AuthService } from '../../../services/auth'; 
 import { Vuelo } from '../../../models/vuelo';
 
 @Component({
@@ -19,6 +21,8 @@ export class RegistroVuelo {
   loading = signal(false);
 
   private api = inject(ApiService);
+  // 2. INYECTAR el servicio que maneja la sesión
+  private auth = inject(AuthService); 
 
   registrar() {
     this.mensaje.set('');
@@ -29,10 +33,22 @@ export class RegistroVuelo {
       return;
     }
 
+    // 3. CAPTURAR el piloto (usuario logueado)
+    const user = this.auth.user();
+    if (!user) {
+      this.error.set('Debes iniciar sesión para registrar un vuelo.');
+      return;
+    }
+    
+    // Asegurarnos de que el ID sea numérico
+    const pilotoIdReal = typeof user.id === 'number' ? user.id : Number(user.id);
+
+    // 4. AGREGAR el pilotoId al payload
     const payload: Vuelo = {
       origen: this.origen(),
       destino: this.destino(),
       fechaSalida: this.fechaSalida(),
+      pilotoId: pilotoIdReal // <--- Aquí se inyecta dinámicamente
     };
 
     this.loading.set(true);

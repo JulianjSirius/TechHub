@@ -3,4 +3,5 @@ export interface Vuelo {
   origen: string;
   destino: string;
   fechaSalida: string;
+  pilotoId?: number;
 }

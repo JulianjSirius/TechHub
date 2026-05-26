@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { ApiService } from '../../services/api';
 import { AuthService } from '../../services/auth';
-import { WeatherWidget } from '../piloto/weather-widget/weather-widget';
 import { CalendarComponent } from '../shared/calendar/calendar';
 import { ChartsComponent } from '../shared/charts/charts';
 import { Practica } from '../../models/practica';
@@ -12,7 +11,7 @@ import { HorasVuelo } from '../../models/horas-vuelo';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterModule, DatePipe, WeatherWidget, CalendarComponent, ChartsComponent],
+  imports: [RouterModule, DatePipe, CalendarComponent, ChartsComponent],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
 })
@@ -39,13 +38,25 @@ export class Dashboard implements OnInit {
     this.dataLoading.set(true);
 
     this.api.getPracticas(uid).subscribe({
-      next: (data) => { this.practicas.set(data); this.checkDone(); },
-      error: () => { this.practicas.set([]); this.checkDone(); },
+      next: (data) => {
+        this.practicas.set(data);
+        this.checkDone();
+      },
+      error: () => {
+        this.practicas.set([]);
+        this.checkDone();
+      },
     });
 
     this.api.getHorasVuelo(uid).subscribe({
-      next: (data) => { this.horasVuelo.set(data); this.checkDone(); },
-      error: () => { this.horasVuelo.set([]); this.checkDone(); },
+      next: (data) => {
+        this.horasVuelo.set(data);
+        this.checkDone();
+      },
+      error: () => {
+        this.horasVuelo.set([]);
+        this.checkDone();
+      },
     });
   }
 
@@ -67,7 +78,7 @@ export class Dashboard implements OnInit {
   }
 
   get completadas(): number {
-    return this.practicas().filter(p => p.completada).length;
+    return this.practicas().filter((p) => p.completada).length;
   }
 
   probarConexion() {
