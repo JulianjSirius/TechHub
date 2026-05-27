@@ -1,0 +1,110 @@
+<div class="bg-[#0c0e17]/90 border border-slate-800/60 p-5 rounded-2xl shadow-2xl backdrop-blur-md text-slate-200">
+  
+  <div class="flex items-center justify-between mb-5">
+    <h4 class="text-xs font-bold uppercase tracking-widest text-white flex items-center gap-2 font-mono">
+      <span class="text-cyan-400">⚡</span> SYSTEM_CALENDAR
+    </h4>
+    <div class="flex items-center gap-2">
+      <button (click)="cambiarMes(-1)" class="w-6 h-6 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-md hover:bg-slate-800 transition text-slate-400 hover:text-white text-xs font-mono">◀</button>
+      <span class="text-xs font-mono font-bold text-cyan-400 bg-slate-900/80 px-3 py-1 rounded-md border border-slate-800">
+        {{ nombreMeses[mesActual()] }} {{ anoActual() }}
+      </span>
+      <button (click)="cambiarMes(1)" class="w-6 h-6 flex items-center justify-center bg-slate-900 border border-slate-800 rounded-md hover:bg-slate-800 transition text-slate-400 hover:text-white text-xs font-mono">▶</button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-7 gap-1 text-center text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider mb-2">
+    <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
+  </div>
+
+  <div class="grid grid-cols-7 gap-1.5">
+    @for (dia of diasDelMes(); track $index) {
+      <div class="relative min-h-[50px] p-1 rounded-xl flex flex-col justify-between transition-all duration-200 border cursor-pointer"
+           (click)="seleccionarDia(dia)"
+           [class.bg-[#0e1222]/50]="dia !== 0"
+           [class.border-slate-800/40]="dia !== 0 && diaSeleccionado() !== dia"
+           [class.border-cyan-500]="diaSeleccionado() === dia"
+           [class.bg-cyan-500/5]="diaSeleccionado() === dia"
+           [class.bg-transparent]="dia === 0"
+           [class.border-transparent]="dia === 0">
+        
+        @if (dia !== 0) {
+          <span class="text-[11px] font-mono font-bold text-slate-400 ml-1 mt-0.5">{{ dia }}</span>
+          
+          <div class="flex flex-col gap-1 mt-1">
+            @for (evento of getEventosDelDia(dia); track $index) {
+              <span class="text-[9px] px-1.5 py-0.5 rounded-md truncate font-medium block border tracking-wide font-sans shadow-sm"
+                    [class.bg-cyan-500/10]="evento.tipo === 'vuelo'"
+                    [class.text-cyan-400]="evento.tipo === 'vuelo'"
+                    [class.border-cyan-500/20]="evento.tipo === 'vuelo'"
+                    [class.bg-indigo-500/10]="evento.tipo === 'practica'"
+                    [class.text-indigo-400]="evento.tipo === 'practica'"
+                    [class.border-indigo-500/20]="evento.tipo === 'practica'"
+                    [title]="evento.titulo + ': ' + evento.info">
+                {{ evento.titulo }}
+              </span>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center gap-4 text-[10px] font-mono text-slate-500">
+    <div class="flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-cyan-400 block"></span>
+      <span>Vuelos ({{ auth.isPiloto() ? 'Creados' : 'Agendados' }})</span>
+    </div>
+    @if (auth.isPasajero()) {
+      <div class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-indigo-400 block"></span>
+        <span>Prácticas Académicas</span>
+      </div>
+    }
+  </div>
+
+  @if (diaSeleccionado() !== null) {
+    <div class="mt-5 p-4 bg-slate-900/60 border border-slate-800 rounded-xl animate-fade-in text-xs font-sans">
+      <div class="flex justify-between items-center mb-3">
+        <h5 class="font-mono font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
+          <span>📅</span> DETALLE: {{ diaSeleccionado() }} de {{ nombreMeses[mesActual()] }}
+        </h5>
+        <button (click)="diaSeleccionado.set(null)" class="text-slate-500 hover:text-white font-mono transition text-[10px]">✕ CERRAR</button>
+      </div>
+      
+      @if (getEventosDelDia(diaSeleccionado()!).length === 0) {
+        <p class="text-slate-500 font-mono py-2 italic text-center bg-slate-950/40 rounded-lg">No hay operaciones registradas para este día.</p>
+      } @else {
+        <div class="space-y-2.5 max-h-[180px] overflow-y-auto pr-1">
+          @for (ev of getEventosDelDia(diaSeleccionado()!); track $index) {
+            <div class="p-3 rounded-lg border flex flex-col gap-1 bg-slate-950/40"
+                 [class.border-cyan-500/30]="ev.tipo === 'vuelo'"
+                 [class.border-indigo-500/30]="ev.tipo === 'practica'">
+              
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-slate-200 text-sm tracking-tight">{{ ev.titulo }}</span>
+                <span class="text-[9px] font-mono px-2 py-0.5 rounded-full uppercase font-bold tracking-widest"
+                      [class.bg-cyan-500/10]="ev.tipo === 'vuelo'"
+                      [class.text-cyan-400]="ev.tipo === 'vuelo'"
+                      [class.bg-indigo-500/10]="ev.tipo === 'practica'"
+                      [class.text-indigo-400]="ev.tipo === 'practica'">
+                  {{ ev.tipo }}
+                </span>
+              </div>
+              
+              @if (ev.info) {
+                <p class="text-slate-400 text-xs mt-0.5">{{ ev.info }}</p>
+              }
+              
+              <div class="text-[10px] text-slate-500 font-mono mt-1 flex items-center gap-1">
+                <span>⏰ Hora:</span>
+                <span>{{ ev.fecha | date:'hh:mm a' }}</span>
+              </div>
+              
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+  </div>

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/Frontend/SkySync/dist/SkySync/browser/index.html"
+    }
+  ]
+}

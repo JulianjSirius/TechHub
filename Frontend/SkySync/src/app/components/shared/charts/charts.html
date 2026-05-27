@@ -1,0 +1,49 @@
+@if (loading()) {
+  <div class="text-xs text-slate-500 animate-pulse">Procesando telemetría...</div>
+} @else if (data()) {
+  <div class="space-y-6">
+    <div class="space-y-2">
+      <div class="flex justify-between text-[10px] font-mono uppercase text-slate-400">
+        <span>Progreso examen actualizacion de licencia</span>
+        <span>{{ progressPercent }}% ({{ data()?.totalHoras }} / {{ META_LICENCIA }} hrs)</span>
+      </div>
+      <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+        <div
+          class="h-full bg-cyan-400 transition-all duration-1000"
+          [style.width.%]="progressPercent"
+        ></div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between text-xs text-slate-400 mt-2">
+      <div>
+        Prácticas: <span class="font-bold text-white">{{ data()?.totalPracticas ?? 0 }}</span>
+      </div>
+      <div>
+        Completadas: <span class="font-bold text-white">{{ data()?.completadas ?? 0 }}</span>
+      </div>
+    </div>
+
+    <div class="flex items-end justify-between h-32 gap-2 mt-6">
+      @if ((data()?.horasMes?.length ?? 0) > 0) {
+        @for (h of data()?.horasMes; track h.mes) {
+          <div class="flex flex-col items-center gap-2 group">
+            <div
+              class="w-8 bg-indigo-500/20 rounded-t-lg relative group-hover:bg-indigo-500/40 transition-all"
+              [style.height.%]="(h.horas / maxHoras) * 100"
+            >
+              <span class="absolute -top-6 left-0 w-full text-[9px] text-center text-slate-400">{{
+                h.horas
+              }}</span>
+            </div>
+            <span class="text-[9px] font-mono text-slate-600 uppercase">{{ h.mes }}</span>
+          </div>
+        }
+      } @else {
+        <div class="text-xs text-slate-500">No hay datos de horas por mes para mostrar.</div>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="text-xs text-slate-600 font-mono">// NO_DATA_FOUND: Registra tu primer vuelo.</div>
+}

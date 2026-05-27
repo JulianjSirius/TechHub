@@ -1,0 +1,19 @@
+@if (error()) { <div class="text-red-500">{{ error() }}</div> }
+@if (mensaje()) { <div class="text-green-500 font-bold mb-4">{{ mensaje() }}</div> }
+
+@if (!loading() && vuelos().length > 0) {
+  <div class="grid-cards">
+    @for (vuelo of vuelos(); track vuelo.id) {
+      <div class="card p-4 border rounded">
+        <p><strong>Ruta:</strong> {{ vuelo.origen }} -> {{ vuelo.destino }}</p>
+        <p><strong>Fecha Salida:</strong> {{ vuelo.fechaSalida | date:'medium' }}</p>
+        
+        @if (auth.isPasajero()) {
+          <button class="btn btn-primary mt-2" (click)="agendarVuelo(vuelo.id!)">
+            ✈️ Agendar este Vuelo
+          </button>
+        }
+      </div>
+    }
+  </div>
+}

@@ -1,7 +1,0 @@
-<Solution>
-  <Project Path="TechHub.API/TechHub.API.csproj" />
-  <Project Path="TechHub.Application/TechHub.Application.csproj" />
-  <Project Path="TechHub.Domain/TechHub.Domain.csproj" />
-  <Project Path="TechHub.Infrastructure/TechHub.Infrastructure.csproj" />
-  <Project Path="TechHub.Tests/TechHub.Tests.csproj" />
-</Solution>

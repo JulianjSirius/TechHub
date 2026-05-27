@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="SkySync.API/SkySync.API.csproj" />
+  <Project Path="SkySync.Application/SkySync.Application.csproj" />
+  <Project Path="SkySync.Domain/SkySync.Domain.csproj" />
+  <Project Path="SkySync.Infrastructure/SkySync.Infrastructure.csproj" />
+  <Project Path="SkySync.Tests/SkySync.Tests.csproj" />
+</Solution>

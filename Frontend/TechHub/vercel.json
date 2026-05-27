@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/Frontend/TechHub/dist/TechHub/browser/index.html"
-    }
-  ]
-}

@@ -1,0 +1,12 @@
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\bin\Debug\net10.0\SkySync.Domain.deps.json
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\bin\Debug\net10.0\SkySync.Domain.dll
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\bin\Debug\net10.0\SkySync.Domain.pdb
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\obj\Debug\net10.0\SkySync.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\obj\Debug\net10.0\SkySync.Domain.AssemblyInfoInputs.cache
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\obj\Debug\net10.0\SkySync.Domain.AssemblyInfo.cs
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\obj\Debug\net10.0\SkySync.Domain.csproj.CoreCompileInputs.cache
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\obj\Debug\net10.0\SkySync.Domain.sourcelink.json
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\obj\Debug\net10.0\SkySync.Domain.dll
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\obj\Debug\net10.0\refint\SkySync.Domain.dll
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\obj\Debug\net10.0\SkySync.Domain.pdb
+C:\proyecto herramientas 3\SkySync_Solutions\SkySync.Domain\obj\Debug\net10.0\ref\SkySync.Domain.dll

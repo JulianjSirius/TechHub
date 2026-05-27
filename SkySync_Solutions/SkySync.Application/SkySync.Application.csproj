@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SkySync.Domain\SkySync.Domain.csproj" />
+    <ProjectReference Include="..\SkySync.Infrastructure\SkySync.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
